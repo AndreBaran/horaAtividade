@@ -15,6 +15,45 @@ class ProfessorController extends Controller
     public function index()
     {
         //
+        $registros = Professor::all();
+        return view('admin.professor.index',compact('registros'));
+    }
+
+    public function adicionar()
+    {
+      $professors = Professor::all();
+      return view('admin.professor.adicionar',compact('professors'));
+    }
+
+    public function salvar(Request $req)
+    {
+      $dados = $req->all();
+      
+      Professor::create($dados);
+
+      return redirect()->route('admin.professor');
+
+    }
+
+    public function editar($id)
+    {
+      $registro = Professor::find($id);
+      return view('admin.professor.editar',compact('registro'));
+    }
+
+    public function atualizar(Request $req, $id)
+    {
+      $dados = $req->all();
+
+      Professor::find($id)->update($dados);
+
+      return redirect()->route('admin.professor');
+    }
+
+    public function deletar($id)
+    {
+      Professor::find($id)->delete();
+      return redirect()->route('admin.professor');
     }
 
     /**
