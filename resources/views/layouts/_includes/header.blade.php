@@ -24,6 +24,7 @@
                 <ul class="right hide-on-med-and-down">
                     <li></a><a href="/"><i class="material-icons">home</i>Home</a></li>
                     <li><a href="{{route('admin.professor')}}">Professor</a></li>
+                    <li><a href="{{route('admin.tipoatividade')}}">Tipo Atividades</a></li>
                 </ul>
             </div>
         </nav>

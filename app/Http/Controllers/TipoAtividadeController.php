@@ -15,6 +15,45 @@ class TipoAtividadeController extends Controller
     public function index()
     {
         //
+        $registros = TipoAtividade::all();
+        return view('admin.tipoatividade.index',compact('registros'));
+    }
+
+    public function adicionar()
+    {
+      $tipoatividades = TipoAtividade::all();
+      return view('admin.tipoatividade.adicionar',compact('tipoatividades'));
+    }
+
+    public function salvar(Request $req)
+    {
+      $dados = $req->all();
+      
+      TipoAtividade::create($dados);
+
+      return redirect()->route('admin.tipoatividade');
+
+    }
+
+    public function editar($id)
+    {
+      $registro = TipoAtividade::find($id);
+      return view('admin.tipoatividade.editar',compact('registro'));
+    }
+
+    public function atualizar(Request $req, $id)
+    {
+      $dados = $req->all();
+
+      TipoAtividade::find($id)->update($dados);
+
+      return redirect()->route('admin.tipoatividade');
+    }
+
+    public function deletar($id)
+    {
+      TipoAtividade::find($id)->delete();
+      return redirect()->route('admin.tipoatividade');
     }
 
     /**
