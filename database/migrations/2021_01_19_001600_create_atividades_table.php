@@ -16,9 +16,10 @@ class CreateAtividadesTable extends Migration
         Schema::create('atividades', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->date('dia');
-            $table->time('HoraInicio');
-            $table->time('HoraFim');
+            $table->string('title');
+            $table->dateTime('start');
+            $table->dateTime('end');
+            $table->string('color',7);
             $table->unsignedBigInteger('professor_id')->nullable()->index();
             $table->foreign('professor_id')->references('id')->on('professors');
             $table->unsignedBigInteger('atividade_id')->nullable()->index();

@@ -17,7 +17,7 @@ class CreateTipoAtividadesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
-            $table->boolean('tipo');
+            $table->boolean('tipo')->default(0);;
         });
     }
 

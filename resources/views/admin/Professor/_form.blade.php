@@ -1,11 +1,16 @@
-<div class="input-field">
-  <div class="input-field">
-  <input type="text" name="name" value="{{isset($registro->name) ? $registro->name : ''}}">
-  <label>Nome</label></input>
+
+
+<div class="form-group row">
+    <label for="text" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
+       <div class="col-md-6">
+            <input id="text" type="text" name="name" value="{{isset($registro->name) ? $registro->name : ''}}">                             
+        </div>
 </div>
-<div class="input-field">
-  <input type="text" name="carga_horaria" value="{{isset($registro->carga_horaria) ? $registro->carga_horaria : ''}}">
-  <label>Carga Horaria</label></input>
+<div class="form-group row">
+    <label for="text" class="col-md-4 col-form-label text-md-right">{{ __('Carga Horaria') }}</label>
+       <div class="col-md-6">
+            <input id="number" type="number" name="carga_horaria" value="{{isset($registro->carga_horaria) ? $registro->carga_horaria : ''}}">                             
+        </div>
 </div>
 
 

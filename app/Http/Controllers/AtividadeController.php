@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Atividade;
 use Illuminate\Http\Request;
+use App\Http\Requests\AtividadeRequest;
 
 class AtividadeController extends Controller
 {
@@ -26,6 +27,13 @@ class AtividadeController extends Controller
     {
         //
     }
+    public function loadAtividades()
+    {
+        $atividade = Atividade::all();
+        return response()->json($atividade);
+    }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -67,9 +75,23 @@ class AtividadeController extends Controller
      * @param  \App\Atividade  $atividade
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Atividade $atividade)
+    //public function update(Request $request, Atividade $atividade)
+
+    public function add(AtividadeRequest $request)
     {
-        //
+        Atividade::create($request->all());
+        return response()->json(true);
+    } 
+
+    public function update(AtividadeRequest $request)
+    {
+        $atividade = Atividade::where('id', $request->id)->first();
+
+        $atividade->fill($request->all());
+
+        $atividade->save();
+
+        return response()->json(true);
     }
 
     /**
@@ -78,8 +100,9 @@ class AtividadeController extends Controller
      * @param  \App\Atividade  $atividade
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Atividade $atividade)
-    {
-        //
+    public function destroy(Request $atividade)
+    { 
+        $atividade = Atividade::where('id', $atividade->id)->delete();
+        return response()->json(true);
     }
 }

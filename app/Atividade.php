@@ -2,16 +2,18 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+
 
 class Atividade extends Model
 {
     //
         //
-        use Notifiable;
+       //  use Notifiable;
 
         protected $fillable = [
-            'dia', 'HoraInicio','HoraFim','professor_id','atividade_id',
+            'title', 'start','end','color','professor_id','atividade_id',
         ];
         public function professor()
         {
@@ -20,6 +22,22 @@ class Atividade extends Model
         public function atividade()
         {
           return $this->hasOne('App\Atividade', 'atividade_id');
+        }
+
+        public function getStartAttribute($value)
+        {
+            $dateStart = Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('Y-m-d');
+            $timeStart = Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('H:i:s');
+    
+            return $this->start = ($timeStart == '00:00:00' ? $dateStart : $value);
+        }
+    
+        public function getEndAttribute($value)
+        {
+            $dateEnd = Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('Y-m-d');
+            $timeEnd = Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('H:i:s');
+    
+            return $this->end = ($timeEnd == '00:00:00' ? $dateEnd : $value);
         }
 
 
