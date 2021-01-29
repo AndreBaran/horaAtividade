@@ -17,6 +17,7 @@ class CreateTipoAtividadesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
+            $table->string('color',7);
             $table->boolean('tipo')->default(0);;
         });
     }

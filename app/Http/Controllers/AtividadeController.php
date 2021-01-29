@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Atividade;
+use App\Professor;
 use Illuminate\Http\Request;
 use App\Http\Requests\AtividadeRequest;
 
@@ -27,8 +28,16 @@ class AtividadeController extends Controller
     {
         //
     }
-    public function loadAtividades()
+
+    public function loadProfessores()
     {
+        $professores = Professor::all();
+        return $professores;//response()->json($professors);
+    }
+
+
+    public function loadAtividades()
+    { 
         $atividade = Atividade::all();
         return response()->json($atividade);
     }
@@ -80,6 +89,7 @@ class AtividadeController extends Controller
     public function add(AtividadeRequest $request)
     {
         Atividade::create($request->all());
+      //  $professores = Professor::all();
         return response()->json(true);
     } 
 

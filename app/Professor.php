@@ -10,6 +10,6 @@ class Professor extends Model
     //use Notifiable;
 
     protected $fillable = [
-        'name', 'carga_horaria',
+        'id','name', 'carga_horaria',
     ];
 }

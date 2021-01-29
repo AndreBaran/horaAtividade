@@ -10,6 +10,6 @@ class TipoAtividade extends Model
     //use Notifiable;
 
     protected $fillable = [
-        'name', 'tipo',
+        'id','name', 'tipo','color',
     ];
 }

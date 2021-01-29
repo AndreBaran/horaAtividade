@@ -25,6 +25,13 @@ class TipoAtividadeController extends Controller
       return view('admin.tipoatividade.adicionar',compact('tipoatividades'));
     }
 
+    public function loadTipos()
+    {
+        $tipoAtividades = TipoAtividade::all();
+        //return $professores;//response()->json($professors);
+        return response()->json($tipoAtividades);
+    }
+
     public function salvar(Request $req)
     {
       $dados = $req->all();

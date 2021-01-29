@@ -45,3 +45,14 @@ Route::put('/admin/fullcalendar/atividade-update', 'AtividadeController@update')
 Route::post('/admin/fullcalendar/atividade-add', 'AtividadeController@add')->name('routeAtividadeAdd');
 Route::delete('/admin/fullcalendar/atividade-destroy', 'AtividadeController@destroy')->name('routeAtividadeDestroy');
 
+//Route::get('/admin/fullcalendar/professor-load', 'AtividadeController@loadProfessores')->name('routeLoadProfessores');
+
+
+
+
+Route::get('/admin/professor/professor-load', 'ProfessorController@loadProfessores')->name('routeLoadProfessores');
+
+Route::get('/admin/tipoatividade/tipo-load', 'TipoAtividadeController@loadTipos')->name('routeLoadTipos');
+
+
+

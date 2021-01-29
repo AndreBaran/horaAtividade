@@ -25,6 +25,13 @@ class ProfessorController extends Controller
       return view('admin.professor.adicionar',compact('professors'));
     }
 
+    public function loadProfessores()
+    {
+        $professores = Professor::all();
+        //return $professores;//response()->json($professors);
+        return response()->json($professores);
+    }
+
     public function salvar(Request $req)
     {
       $dados = $req->all();

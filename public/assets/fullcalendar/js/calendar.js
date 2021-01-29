@@ -35,13 +35,24 @@ document.addEventListener('DOMContentLoaded', function () {
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
-      right: 'timeGridWeek'
-      //right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      //right: 'timeGridWeek'
+      
+      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     },
     locale: 'pt-br',
     navLinks: true,
-    eventLimit: true,
+    eventLimit: false,
     selectable: true,
+    initialView: 'timeGridWeek',
+   // allDayDefault: true,
+    hiddenDays: [ 0, 6 ], 
+    businessHours: {
+      // days of week. an array of zero-based day of week integers (0=Sunday)
+      daysOfWeek: [ 1, 2, 3, 4 ], // Monday - Thursday
+    
+      startTime: '08:00', // a start time (10am in this example)
+      endTime: '18:00', // an end time (6pm in this example)
+    },
     editable: true,
     droppable: true, // this allows things to be dropped onto the calenda
     drop: function (arg) {
@@ -59,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
         _method: 'PUT',
         id: element.event.id,
         start: start,
+        title: element.event.title,
         end: end
       }
       console.log(routeAtividades('routeAtividadeUpdate'));
@@ -66,6 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // console.log(end);
     },
     eventClick: function (element) {
+      console.log(element);
       clearMessages('.message');
       resetForm("#formEvent");
       $("#modalCalendar").modal('show');
@@ -101,6 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
         _method: 'PUT',
         id: element.event.id,
         start: start,
+        title: element.event.title,
         end: end
       }
       console.log(routeAtividades('routeAtividadeUpdate'));
@@ -132,4 +146,6 @@ document.addEventListener('DOMContentLoaded', function () {
 // console.log(routeAtividades('routeLoadAtividades'));
 console.log('aaa');
 console.log(routeAtividades('routeLoadAtividades'));
+console.log('aaaaaaaaaaaaaaaaaaaaaaa');
+console.log(routeAtividades('routeLoadProfessores'));
   //console.log('eee');

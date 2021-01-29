@@ -10,6 +10,31 @@ $(function () {
         }
     });
 
+    $.getJSON(routeAtividades('routeLoadProfessores'), function (dados) {
+        console.log(dados);
+        if (dados.length > 0) {
+            var option = '';
+            $.each(dados, function (i, obj) {
+                option += '<option value="' + obj.id + '">' + obj.name + '</option>';
+            })
+            $('#cmbProfessor').html(option).show();
+        } else {
+            Reset();
+            $('#mensagem').html('<span class="mensagem">Não foram encontrados Professores!</span>');
+        }
+    });
+    $.getJSON(routeAtividades('routeLoadTipos'), function (dados) {
+        console.log(dados);
+        if (dados.length > 0) {
+            var option = '';
+            $.each(dados, function (i, obj) {
+                option += '<option value="' + obj.id + '">' + obj.name + '</option>';
+            })
+            $('#cmbAtividade').html(option).show();
+        };
+    });
+
+
     $(".deleteEvent").click(function () {
 
         let id = $("#modalCalendar input[name='id']").val();
@@ -28,6 +53,17 @@ $(function () {
     });
 
     $(".saveEvent").click(function () {
+        let professor = $("#cmbProfessor option:selected").text();
+        let idProfessor = $("#cmbProfessor option:selected").val();
+
+        let Atividade = $("#cmbAtividade option:selected").text();
+        let idAtividade = $("#cmbAtividade option:selected").val();
+
+        console.log('-------------');
+        let descricao = professor+' '+Atividade;
+       // console.log(teste);
+        console.log(idProfessor);
+        console.log('-------------');
 
         let id = $("#modalCalendar input[name='id']").val();
 
@@ -40,11 +76,25 @@ $(function () {
         let color = $("#modalCalendar input[name='color']").val();
 
         let Event = {
-            title: title,
+            title: descricao,
             start: start,
             end: end,
             color: color,
+            //extendedProps.event.professor_id=idProfessor,
+            professor_id: idProfessor,
+            tipoatividade_id: idAtividade,
         };
+
+
+        let testeoooooooooooooo = {
+            title: title,
+            start: start,
+            end: end,
+            colorsss: color,
+            //aaaaprofessor_id =idProfessor,
+            //  atividade_id =idAtividade,
+        };
+
         let route;
 
         if (id == '') {
@@ -54,12 +104,17 @@ $(function () {
             Event.id = id;
             Event._method = 'PUT';
         }
+        console.log('-------------');
+
+        console.log(testeoooooooooooooo);
+        console.log('-------------');
 
         sendAtividade(route, Event);
     });
 })
 
 function sendAtividade(route, data_) {
+ //   console.log('***************');
     console.log(data_);
     console.log(route);
     $.ajax({
@@ -75,12 +130,12 @@ function sendAtividade(route, data_) {
         },
         error: function (json) {
 
-            console.log('-------------');
-            console.log(json);
-            console.log('-------------');
+            console.log('***************');
+            console.log(json.responseJSON);
+            console.log('***************');
             let responseJSON = json.responseJSON.errors;
 
-             $(".message").html(loadErrors(responseJSON));
+            $(".message").html(loadErrors(responseJSON));
         }
     });
 }

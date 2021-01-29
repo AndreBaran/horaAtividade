@@ -13,7 +13,7 @@ class Atividade extends Model
        //  use Notifiable;
 
         protected $fillable = [
-            'title', 'start','end','color','professor_id','atividade_id',
+            'title', 'start','end','color','professor_id','tipoatividade_id',
         ];
         public function professor()
         {
@@ -21,7 +21,7 @@ class Atividade extends Model
         }
         public function atividade()
         {
-          return $this->hasOne('App\Atividade', 'atividade_id');
+          return $this->hasOne('App\Atividade', 'tipoatividade_id');
         }
 
         public function getStartAttribute($value)

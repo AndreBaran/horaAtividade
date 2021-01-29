@@ -1,4 +1,3 @@
-
 <div class="modal fade" id="modalCalendar" tabindex="-1" role="dialog" aria-labelledby="titleModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -13,6 +12,24 @@
                 <div class="message"></div>
 
                 <form id="formEvent">
+                    <div class="form-group row" >
+                        <label for="title" class="col-sm-4 col-form-label">Professor</label>
+                        <div class="col-sm-8" >
+                                <select class="form-select " style="width:300px;" aria-label="Default select example" id="cmbProfessor">
+                                    
+                                </select>
+                             
+                        </div>
+                    </div>
+                    <div class="form-group row" >
+                        <label for="title" class="col-sm-4 col-form-label">Atividade</label>
+                        <div class="col-sm-8" >
+                                <select class="form-select " style="width:300px;" aria-label="Default select example" id="cmbAtividade">
+                                    
+                                </select>
+                             
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label for="title" class="col-sm-4 col-form-label">Titulo</label>
                         <div class="col-sm-8">
@@ -48,4 +65,3 @@
         </div>
     </div>
 </div>
-
