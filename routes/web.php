@@ -39,7 +39,8 @@ Route::get('/admin/tipoatividade/editar/{id}',['as'=>'admin.tipoatividade.editar
 Route::put('/admin/tipoatividade/atualizar/{id}',['as'=>'admin.tipoatividade.atualizar','uses'=>'TipoAtividadeController@atualizar']);
 Route::get('/admin/tipoatividade/deletar/{id}',['as'=>'admin.tipoatividade.deletar','uses'=>'TipoAtividadeController@deletar']);
 
-Route::get('/admin/fullcalendar', 'FullCalendarController@index')->name('home');
+//Route::get('/admin/fullcalendar', 'FullCalendarController@index')->name('home');
+Route::get('/admin/fullcalendar', ['as'=>'admin.fullcalendar','uses'=>'FullCalendarController@index']);
 Route::get('/admin/fullcalendar/load-atividades', 'AtividadeController@loadAtividades')->name('routeLoadAtividades');
 Route::put('/admin/fullcalendar/atividade-update', 'AtividadeController@update')->name('routeAtividadeUpdate');
 Route::post('/admin/fullcalendar/atividade-add', 'AtividadeController@add')->name('routeAtividadeAdd');

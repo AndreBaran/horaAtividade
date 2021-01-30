@@ -141,55 +141,17 @@ function sendAtividade(route, data_) {
 }
 
 function getTipoAtividade(route, data_) {
-       
-      // console.log(data_);
-       
-      // route=route+'/'+data_;
-     //  console.log(route);
-     //let jsonReult=  
      var tipoAtividade;
      $.ajaxSetup({
         async: false
       });
      $.getJSON(route+'/'+data_, function (dados) {
-        //console.log('***************funcaoF1');
-        //console.log(dados);
         tipoAtividade=dados;
-        //return tipoAtividade.color;
-        //console.log('uuuuu'+tipoAtividade.color);
-        //console.log('***************funcaoF2');
     });
     $.ajaxSetup({
         async: true
       });
-    //var obj = $.parseJSON( cor );
-   // console.log('tttttttttttt');
-    //console.log(tipoAtividade);
-    //console.log('aaaa'+tipoAtividade.color);
     return tipoAtividade;
-    // $.ajax({
-    //       url: route+'/'+data_,
-    //       data: data_,
-    //       method: 'GET',
-    //       dataType: 'json',
-    //       success: function (json) {
-    //           console.log('***************funcao1');
-    //           console.log(json);
-    //           console.log('***************funcao2');
-    //           return json;
-    //       },
-    //       error: function (json) {
-   
-    //           console.log('***************');
-    //           console.log(json.responseJSON);
-    //           console.log('***************');
-    //           return json;
-    //       }
-    //   });
-     //  console.log('xxxxxxxxxxxxxxxxxxx');
-
-     // console.log(jsonReult);
-      // return jsonReult;
    }
 
 function loadErrors(response) {

@@ -7,8 +7,15 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="/css/app.css">
+    <link href="{{asset('assets/fullcalendar/lib/main.css')}}" rel='stylesheet' />
+
+<link href="{{asset('assets/fullcalendar/css/style.css')}}" rel='stylesheet' />
+
+
+<meta name="csrf-token" content="{{ csrf_token() }}">
     
 
     <!--Let browser know website is optimized for mobile-->
@@ -17,17 +24,26 @@
 
 <body>
   
-        <nav class="cor">
-            <div class="nav-wrapper">
-                <class="brand-logo"></a>
-                <a href="#" data-target="mobile" class="sidenav-trigger">
-                <ul class="right hide-on-med-and-down">
-                    <li></a><a href="/"><i class="material-icons">home</i>Home</a></li>
-                    <li><a href="{{route('admin.professor')}}">Professor</a></li>
-                    <li><a href="{{route('admin.tipoatividade')}}">Tipo Atividades</a></li>
-                </ul>
-            </div>
-        </nav>
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+   
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <li></a><a class="nav-link active" aria-current="page"  href="/">Home</a></li>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('admin.professor')}}">Professor</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('admin.tipoatividade')}}">Tipo Atividades</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('admin.fullcalendar')}}">Hora Atividade</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
      
 </body>
