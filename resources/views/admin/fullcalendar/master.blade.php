@@ -49,7 +49,8 @@
         data-route-atividade-add={{route('routeAtividadeAdd')}}
         data-route-atividade-destroy={{route('routeAtividadeDestroy')}}
         data-route-load-professores={{route('routeLoadProfessores')}}
-        data-route-load-tipos={{route('routeLoadTipos')}}></div>
+        data-route-load-tipos={{route('routeLoadTipos')}}
+        data-route-load-infotipos={{route('routeLoadTipoinfos','')}}></div>
     </div>
 
   </div>

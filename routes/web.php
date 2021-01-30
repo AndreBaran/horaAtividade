@@ -47,12 +47,10 @@ Route::delete('/admin/fullcalendar/atividade-destroy', 'AtividadeController@dest
 
 //Route::get('/admin/fullcalendar/professor-load', 'AtividadeController@loadProfessores')->name('routeLoadProfessores');
 
-
-
-
 Route::get('/admin/professor/professor-load', 'ProfessorController@loadProfessores')->name('routeLoadProfessores');
 
 Route::get('/admin/tipoatividade/tipo-load', 'TipoAtividadeController@loadTipos')->name('routeLoadTipos');
+Route::get('/admin/tipoatividade/tipoinfo-load/{id}', 'TipoAtividadeController@loadTipoinfos')->name('routeLoadTipoinfos');
 
 
 

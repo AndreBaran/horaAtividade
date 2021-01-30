@@ -32,6 +32,13 @@ class TipoAtividadeController extends Controller
         return response()->json($tipoAtividades);
     }
 
+    public function loadTipoinfos($id)
+    {//$id
+      //$tipoAtividadeInfo = TipoAtividade::all();
+      $tipoAtividadeInfo = TipoAtividade::find($id);
+      return response()->json($tipoAtividadeInfo);
+    }
+
     public function salvar(Request $req)
     {
       $dados = $req->all();

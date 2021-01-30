@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
     hiddenDays: [ 0, 6 ], 
     businessHours: {
       // days of week. an array of zero-based day of week integers (0=Sunday)
-      daysOfWeek: [ 1, 2, 3, 4 ], // Monday - Thursday
+      daysOfWeek: [ 1, 2, 3, 4 ,5], // Monday - Thursday
     
       startTime: '08:00', // a start time (10am in this example)
       endTime: '18:00', // an end time (6pm in this example)
@@ -144,8 +144,19 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // console.log(routeAtividades('routeLoadAtividades'));
-console.log('aaa');
-console.log(routeAtividades('routeLoadAtividades'));
+//console.log('aaa');
+//console.log(routeAtividades('routeLoadAtividades'));
+
+//console.log(routeAtividades('routeLoadProfessores'));
 console.log('aaaaaaaaaaaaaaaaaaaaaaa');
-console.log(routeAtividades('routeLoadProfessores'));
+//console.log(routeTeste());
+console.log(routeAtividades('routeLoadTipos'));
+//console.log(routeAtividades('routeLoadInfotipos'));
+//let rota =routeAtividades('routeLoadInfotipos');
+let teste =getTipoAtividade(routeAtividades('routeLoadInfotipos'),2);
+console.log('fora '+teste.color);
+//console.log(getTipoAtividade(routeAtividades('routeLoadInfotipos'),2));
+//console.log(routeTeste());
+///console.log(getTipoAtividade(routeAtividades('routeLoadInfoTipos'),1));
+//console.log('bbbbbbbbbbbbb');
   //console.log('eee');

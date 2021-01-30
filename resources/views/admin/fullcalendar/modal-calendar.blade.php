@@ -52,7 +52,7 @@
                     <div class="form-group row">
                         <label for="color" class="col-sm-4 col-form-label">Cor do Evento</label>
                         <div class="col-sm-8">
-                            <input type="color" name="color" class="form-control" id="color">
+                            <input type="color" name="color" class="form-control" id="color" disabled>
                         </div>
                     </div>
                 </form>
