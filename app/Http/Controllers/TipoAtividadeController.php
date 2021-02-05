@@ -40,7 +40,7 @@ class TipoAtividadeController extends Controller
     }
 
     public function salvar(Request $req)
-    {
+    { 
       $dados = $req->all();
       
       TipoAtividade::create($dados);

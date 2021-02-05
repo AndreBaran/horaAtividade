@@ -4,15 +4,15 @@ document.addEventListener('DOMContentLoaded', function () {
   /* initialize the external events
   -----------------------------------------------------------------*/
 
-  var containerEl = document.getElementById('external-events-list');
-  new FullCalendar.Draggable(containerEl, {
-    itemSelector: '.fc-event',
-    eventData: function (eventEl) {
-      return {
-        title: eventEl.innerText.trim()
-      }
-    }
-  });
+ // var containerEl = document.getElementById('external-events-list');
+//  new FullCalendar.Draggable(containerEl, {
+//    itemSelector: '.fc-event',
+//    eventData: function (eventEl) {
+//      return {
+//        title: eventEl.innerText.trim()
+ //     }
+ //   }
+ // });
 
   //// the individual way to do it
   // var containerEl = document.getElementById('external-events-list');
@@ -36,20 +36,21 @@ document.addEventListener('DOMContentLoaded', function () {
       left: 'prev,next today',
       center: 'title',
       //right: 'timeGridWeek'
-      
+
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     },
     locale: 'pt-br',
     navLinks: true,
     eventLimit: false,
     selectable: true,
+    height: 650,
     initialView: 'timeGridWeek',
-   // allDayDefault: true,
-    hiddenDays: [ 0, 6 ], 
+    // allDayDefault: true,
+    hiddenDays: [0, 6],
     businessHours: {
       // days of week. an array of zero-based day of week integers (0=Sunday)
-      daysOfWeek: [ 1, 2, 3, 4 ,5], // Monday - Thursday
-    
+      daysOfWeek: [1, 2, 3, 4, 5], // Monday - Thursday
+
       startTime: '08:00', // a start time (10am in this example)
       endTime: '18:00', // an end time (6pm in this example)
     },
@@ -137,9 +138,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
       calendar.unselect();
     },
-    events: routeAtividades('routeLoadAtividades'),
+    datesSet: function() {
+      console.log('ffffffffffffffffffff');
+      //console.log(calendar.startTime().toISOString());
+      //console.log(calendar.endTime().toISOString());
+     // calendar.getDate()
+      
+      console.log(calendar.getDate().toISOString());
+      console.log(calendar.view.activeStart.toISOString());
+      console.log(calendar.view.activeEnd.toISOString());
+     
+      let start = moment(calendar.view.activeStart.toISOString()).format("DD/MM/YYYY");
+      $("#divDate input[name='startView']").val(start);
+
+      let end = moment(calendar.view.activeEnd.toISOString()).format("DD/MM/YYYY"); 
+      $("#divDate input[name='endView']").val(end);
+
+      console.log(start);
+      console.log(end);
+      console.log('ffffffffffffffffffff');
+    },
+    events:routeAtividades('routeLoadAtividades'),
+    
   });
   calendar.render();
+  //console.log('aaaaaaaaaaaaaaaaaaaaaaa');
+  //console.log(calendar.startTime.val);
+  //console.log('aaaaaaaaaaaaaaaaaaaaaaa');
 
 });
 
@@ -148,15 +173,21 @@ document.addEventListener('DOMContentLoaded', function () {
 //console.log(routeAtividades('routeLoadAtividades'));
 
 //console.log(routeAtividades('routeLoadProfessores'));
-console.log('aaaaaaaaaaaaaaaaaaaaaaa');
+//console.log('aaaaaaaaaaaaaaaaaaaaaaa');
 //console.log(routeTeste());
-console.log(routeAtividades('routeLoadTipos'));
+//console.log(routeAtividades('routeLoadAtividades'));
 //console.log(routeAtividades('routeLoadInfotipos'));
 //let rota =routeAtividades('routeLoadInfotipos');
-let teste =getTipoAtividade(routeAtividades('routeLoadInfotipos'),2);
-console.log('fora '+teste.color);
+//let teste =getTipoAtividade(routeAtividades('routeLoadInfotipos'),2);
+//
+//console.log('aaaaaaaaaaaaaaaaaaaaaaa');
 //console.log(getTipoAtividade(routeAtividades('routeLoadInfotipos'),2));
 //console.log(routeTeste());
 ///console.log(getTipoAtividade(routeAtividades('routeLoadInfoTipos'),1));
 //console.log('bbbbbbbbbbbbb');
-  //console.log('eee');
+//console.log(calendar.events.color);
+//console.log('eee');
+//console.log('aaaaaaaaaaaaaaaaaaaaaaa');
+console.log(calendar.getEventById('a') );
+//console.log(calendarEl);
+//console.log('aaaaaaaaaaaaaaaaaaaaaaa');

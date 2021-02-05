@@ -53,5 +53,8 @@ Route::get('/admin/professor/professor-load', 'ProfessorController@loadProfessor
 Route::get('/admin/tipoatividade/tipo-load', 'TipoAtividadeController@loadTipos')->name('routeLoadTipos');
 Route::get('/admin/tipoatividade/tipoinfo-load/{id}', 'TipoAtividadeController@loadTipoinfos')->name('routeLoadTipoinfos');
 
+Route::get('/admin/atividade/load-atividade-week', 'AtividadeController@loadAtividadeWeeks')->name('routeLoadAtividadeWeeks');
+
+
 
 

@@ -1,5 +1,6 @@
 
 
+
 $(function () {
 
     $('.date-time').mask('00/00/0000 00:00:00');
@@ -11,13 +12,27 @@ $(function () {
     });
 
     $.getJSON(routeAtividades('routeLoadProfessores'), function (dados) {
-        console.log(dados);
+       // console.log(dados);
         if (dados.length > 0) {
             var option = '';
             $.each(dados, function (i, obj) {
                 option += '<option value="' + obj.id + '">' + obj.name + '</option>';
             })
             $('#cmbProfessor').html(option).show();
+        } else {
+            Reset();
+            $('#mensagem').html('<span class="mensagem">Não foram encontrados Professores!</span>');
+        }
+    });
+
+    $.getJSON(routeAtividades('routeLoadProfessores'), function (dados) {
+        console.log(dados);
+        if (dados.length > 0) {
+            var option = '';
+            $.each(dados, function (i, obj) {
+                option += '<option value="' + obj.id + '">' + obj.name + '</option>';
+            })
+            $('#cmbProfessorTeste').html(option).show();
         } else {
             Reset();
             $('#mensagem').html('<span class="mensagem">Não foram encontrados Professores!</span>');
@@ -51,6 +66,7 @@ $(function () {
         sendAtividade(route, Atividade);
 
     });
+   
 
     $(".saveEvent").click(function () {
         let professor = $("#cmbProfessor option:selected").text();
@@ -112,6 +128,8 @@ $(function () {
         sendAtividade(route, Event);
     });
 })
+
+
 
 function sendAtividade(route, data_) {
  //   console.log('***************');

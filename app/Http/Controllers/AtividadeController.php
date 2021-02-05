@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Atividade;
 use App\Professor;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\AtividadeRequest;
 
@@ -13,6 +14,7 @@ class AtividadeController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
      */
     public function index()
     {
@@ -36,11 +38,52 @@ class AtividadeController extends Controller
     }
 
 
-    public function loadAtividades()
-    { 
-        $atividade = Atividade::all();
+    public function loadAtividades(Request $request)
+    {   $returnedColumns = ['id', 'title', 'start', 'end', 'color','professor_id','tipoatividade_id'];
+        $start = (!empty($request->start)) ? ($request->start) : ('');
+        $end = (!empty($request->end)) ? ($request->end) : ('');
+        $atividade = Atividade::whereBetween('start', [$start, $end])->get($returnedColumns);
+       
+        //$atividade = Atividade::all();
         return response()->json($atividade);
     }
+
+    public function loadAtividadesObj()
+    {   
+
+        //$atividade = Atividade::groupBy('professor_id');
+        $atividade = Atividade::all();
+        return $atividade;
+    }
+
+    public function loadAtividadeWeeks()
+    {   //$dateStart,$dateEnd
+        //$dateStart,$dateEnd
+        //$atividade = Atividade::groupBy('professor_id')
+        //->get('professor_id');
+
+      //  $atividade = Atividade::groupBy('professors.name,tipo_atividades.tipo')
+     //   ->join('professors', 'professors.id', '=', 'atividades.professor_id')
+     //   ->join('tipo_atividades', 'tipo_atividades.id', '=', 'atividades.tipoatividade_id');
+      //  ->selectRaw('(sum(TIMESTAMPDIFF(minute,start,end))/60) as horas')
+     
+        
+
+      $atividade = Atividade::whereBetween('start', ["2021-01-01 00:00:00", "2021-01-31 00:00:00"])
+            ->groupBy('professors.name','tipo_atividades.tipo')
+            ->leftJoin('professors', 'atividades.professor_id', '=', 'professors.id')
+            ->leftJoin('tipo_atividades', 'atividades.tipoatividade_id', '=', 'tipo_atividades.id')
+            ->select('professors.name', 'tipo_atividades.tipo')
+            ->selectRaw('(sum(TIMESTAMPDIFF(minute,start,end))/60) as horas')
+        ->get();
+
+        //$atividade = Atividade::all();
+        return $atividade;
+    }
+
+   
+
+  
 
 
 
