@@ -15,29 +15,32 @@
 
 <body>
   @include('admin.fullcalendar.modal-calendar')
-  <div id="divDate">
-    <input id='my-button' type="submit" name="insert" value="insert" class="fc-next-but" />
-    <input type="text" name="startView" class="form-control date-time" id="startView">
-    <input type="text" name="endView" class="form-control date-time" id="endView">
-  </div>
+  <nav class="nav">
+    <button id = 'btn-divcalendario' class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>Calendario
+    </button>
+    <button id='btn-divtabela' class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>Tabela
+    </button>
+  </nav>
   <div id='wrap'>
-
-
-
-    <div id='calendar-wrap'>
-      <div id='calendar' data-route-load-atividades={{route('routeLoadAtividades')}} 
-      data-route-atividade-update={{route('routeAtividadeUpdate')}} 
-      data-route-atividade-add={{route('routeAtividadeAdd')}} 
-      data-route-atividade-destroy={{route('routeAtividadeDestroy')}} 
-      data-route-load-professores={{route('routeLoadProfessores')}} 
-      data-route-load-tipos={{route('routeLoadTipos')}} 
-      data-route-load-infotipos={{route('routeLoadTipoinfos','')}}
-      data-route-atividade-weeks={{route('routeLoadAtividadeWeeks')}}></div>
+    <div id="divDate" class='containerTabela' style="display:none">
+      <div id='tabela'>
+        @include('admin.fullcalendar.totais')
+      </div>
+      
+      <input  name="startView" class="form-control date-time" id="startView">
+      <input  name="endView" class="form-control date-time" id="endView">
+      <input  name="startLastView" class="form-control date-time" id="startLastView">
+      <input  name="endLastView" class="form-control date-time" id="endLastView">
+    </div>
+    <div id='calendario' class='containerCalendario'  style="display:block">
+      <div id='calendar' data-route-load-atividades={{route('routeLoadAtividades')}} data-route-atividade-update={{route('routeAtividadeUpdate')}} data-route-atividade-add={{route('routeAtividadeAdd')}} data-route-atividade-destroy={{route('routeAtividadeDestroy')}} data-route-load-professores={{route('routeLoadProfessores')}} data-route-load-tipos={{route('routeLoadTipos')}} data-route-load-infotipos={{route('routeLoadTipoinfos','')}} data-route-atividade-weeks={{route('routeLoadAtividadeWeeks')}}></div>
     </div>
 
   </div>
 
-  @include('admin.fullcalendar.totais')
+
 
   <script src="{{asset('assets/fullcalendar/lib/main.js')}}"></script>
   <script src="{{asset('assets/fullcalendar/lib/locales-all.js')}}"></script>

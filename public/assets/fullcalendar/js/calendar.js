@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
     navLinks: true,
     eventLimit: false,
     selectable: true,
-    height: 650,
+    height: 550,
     initialView: 'timeGridWeek',
     // allDayDefault: true,
     hiddenDays: [0, 6],
@@ -148,10 +148,31 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log(calendar.view.activeStart.toISOString());
       console.log(calendar.view.activeEnd.toISOString());
      
-      let start = moment(calendar.view.activeStart.toISOString()).format("DD/MM/YYYY");
+     // let start = calendar.view.activeStart.toISOString();//moment(calendar.view.activeStart.toISOString()).format("YYYY-MM-DD HH:mm:ss");
+     //let start = moment(calendar.view.activeStart.toISOString());//.format("YYYY-MM-DD HH:mm:ss");
+     //let endLastWeek=start.subtract(1, 'd');
+     //let startLastWeek=start.subtract(8, 'd');
+    // start=start.format("YYYY-MM-DD HH:mm:ss"); 
+    // endLastWeek=endLastWeek.format("YYYY-MM-DD HH:mm:ss"); 
+//startLastWeek=startLastWeek.format("YYYY-MM-DD HH:mm:ss"); 
+      //start=start-7;
+     let end = moment(calendar.view.activeEnd.toISOString());
+     let start= moment(calendar.view.activeEnd.toISOString());
+     let endLastWeek=moment(calendar.view.activeEnd.toISOString());
+     let startLastWeek=moment(calendar.view.activeEnd.toISOString());
+     start=start.subtract(7, 'd');
+     endLastWeek=endLastWeek.subtract(8, 'd');
+     startLastWeek=startLastWeek.subtract(14, 'd');
+     start=start.format("YYYY-MM-DD HH:mm:ss"); 
+     end=end.format("YYYY-MM-DD HH:mm:ss"); 
+     endLastWeek=endLastWeek.format("YYYY-MM-DD HH:mm:ss"); 
+     startLastWeek=startLastWeek.format("YYYY-MM-DD HH:mm:ss"); 
       $("#divDate input[name='startView']").val(start);
 
-      let end = moment(calendar.view.activeEnd.toISOString()).format("DD/MM/YYYY"); 
+      $("#divDate input[name='startLastView']").val(startLastWeek);
+      $("#divDate input[name='endLastView']").val(endLastWeek);
+
+   
       $("#divDate input[name='endView']").val(end);
 
       console.log(start);
@@ -188,6 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
 //console.log(calendar.events.color);
 //console.log('eee');
 //console.log('aaaaaaaaaaaaaaaaaaaaaaa');
-console.log(calendar.getEventById('a') );
+//console.log(routeAtividades('routeAtividadeWeeks'));
+console.log(routeTeste('teste'));
 //console.log(calendarEl);
 //console.log('aaaaaaaaaaaaaaaaaaaaaaa');

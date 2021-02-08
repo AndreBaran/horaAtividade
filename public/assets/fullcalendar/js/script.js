@@ -172,6 +172,20 @@ function getTipoAtividade(route, data_) {
     return tipoAtividade;
    }
 
+function getAtividadesWeek(route, data_) {
+    var tipoAtividade;
+    $.ajaxSetup({
+       async: false
+     });
+    $.getJSON(route+'?'+data_, function (dados) {
+       tipoAtividade=dados;
+   });
+   $.ajaxSetup({
+       async: true
+     });
+   return tipoAtividade;
+  }
+
 function loadErrors(response) {
 
     let boxAlert = `<div class="alert alert-danger">`;
@@ -193,11 +207,38 @@ function routeAtividades(route) {
     return document.getElementById('calendar').dataset[route];
 }
 
-function routeTeste() {
+function routeTeste(route) {
     return document.getElementById('calendar').dataset;
 }
 
 function resetForm(form) {
     $(form)[0].reset();
 }
+
+var btntabela = document.getElementById('btn-divtabela');
+var containerTabela = document.querySelector('.containerTabela');
+var containerCalendario = document.querySelector('.containerCalendario');
+btntabela.addEventListener('click', function() {
+   console.log(containerTabela.style.display); 
+  if(containerTabela.style.display === 'block') {
+    containerTabela.style.display = 'none';
+    containerCalendario.style.display = 'block';
+  } else {
+    containerTabela.style.display = 'block';
+    containerCalendario.style.display = 'none';
+  }
+});
+
+var btncalendario = document.getElementById('btn-divcalendario');
+
+btncalendario.addEventListener('click', function() {
+  if(containerCalendario.style.display === 'block') {
+    containerCalendario.style.display = 'none';
+    containerTabela.style.display = 'block';
+  } else {
+    containerCalendario.style.display = 'block';
+    containerTabela.style.display = 'none';
+  }
+});
+
 
