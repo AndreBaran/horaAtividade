@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Professor;
+use App\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class ProfessorController extends Controller
 {
     /**
@@ -15,19 +16,24 @@ class ProfessorController extends Controller
     public function index()
     {
         //
-        $registros = Professor::all();
+        $registros = Professor::where('user_id', Auth::id())->get();
+        //$registros = Professor::all();
         return view('admin.professor.index',compact('registros'));
     }
 
     public function adicionar()
     {
       $professors = Professor::all();
-      return view('admin.professor.adicionar',compact('professors'));
+     // $professors.user_id= Auth::id();
+     
+     // $registros = User::where('user_id', Auth::id())->get();
+      return view('admin.professor.adicionar',compact('professors','registros'));
     }
 
     public function loadProfessores()
     {
-        $professores = Professor::all();
+        //$professores = Professor::all();
+        $professores = Professor::where('user_id', Auth::id())->get();
         //return $professores;//response()->json($professors);
         return response()->json($professores);
     }
@@ -35,7 +41,7 @@ class ProfessorController extends Controller
     public function salvar(Request $req)
     {
       $dados = $req->all();
-      
+      $dados['user_id'] = Auth::id();
       Professor::create($dados);
 
       return redirect()->route('admin.professor');

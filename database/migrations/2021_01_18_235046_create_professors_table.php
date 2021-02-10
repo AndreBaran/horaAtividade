@@ -18,6 +18,8 @@ class CreateProfessorsTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->integer('carga_horaria');
+            $table->unsignedBigInteger('user_id')->nullable()->index();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

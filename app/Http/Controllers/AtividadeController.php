@@ -7,6 +7,7 @@ use App\Professor;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\AtividadeRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AtividadeController extends Controller
 {
@@ -42,7 +43,9 @@ class AtividadeController extends Controller
     {   $returnedColumns = ['id', 'title', 'start', 'end', 'color','professor_id','tipoatividade_id'];
         $start = (!empty($request->start)) ? ($request->start) : ('');
         $end = (!empty($request->end)) ? ($request->end) : ('');
-        $atividade = Atividade::whereBetween('start', [$start, $end])->get($returnedColumns);
+        $atividade = Atividade::whereBetween('start', [$start, $end])
+                                ->where('user_id', Auth::id())
+                                ->get($returnedColumns);
        
         //$atividade = Atividade::all();
         return response()->json($atividade);
@@ -81,14 +84,15 @@ class AtividadeController extends Controller
        //     ->selectRaw('(sum(TIMESTAMPDIFF(minute,start,end))/60) as horas')
        // ->get();
       
-      $atividade = Atividade::whereBetween('atividades.start', [$start,$end])     
-      ->groupBy('professors.name')
+      $atividade = Atividade::whereBetween('atividades.start', [$start,$end])
+            ->where('atividades.user_id', Auth::id())     
+            ->groupBy('professors.name')
             ->leftJoin('professors', 'atividades.professor_id', '=', 'professors.id')
             ->leftJoin('tipo_atividades', 'atividades.tipoatividade_id', '=', 'tipo_atividades.id')
             ->select('professors.name')
             ->selectRaw('sum((CASE WHEN tipo_atividades.tipo=0 THEN (TIMESTAMPDIFF(minute,start,end)) else 0 end)/60) as horaSala')
             ->selectRaw('sum((CASE WHEN tipo_atividades.tipo=1 THEN (TIMESTAMPDIFF(minute,start,end)) else 0 end)/60) as horaAtividade')
-        ->get();
+            ->get();
 
         //$atividade = Atividade::all();
         return $atividade;
@@ -144,6 +148,7 @@ class AtividadeController extends Controller
 
     public function add(AtividadeRequest $request)
     {
+        $request['user_id'] = Auth::id(); 
         Atividade::create($request->all());
       //  $professores = Professor::all();
         return response()->json(true);
@@ -152,9 +157,10 @@ class AtividadeController extends Controller
     public function update(AtividadeRequest $request)
     {
         $atividade = Atividade::where('id', $request->id)->first();
+       
 
         $atividade->fill($request->all());
-
+        $atividade['user_id'] = Auth::id();
         $atividade->save();
 
         return response()->json(true);

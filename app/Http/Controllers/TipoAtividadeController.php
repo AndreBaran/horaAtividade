@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\TipoAtividade;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class TipoAtividadeController extends Controller
 {
     /**
@@ -15,7 +15,8 @@ class TipoAtividadeController extends Controller
     public function index()
     {
         //
-        $registros = TipoAtividade::all();
+        //$registros = TipoAtividade::all();
+        $registros = TipoAtividade::where('user_id', Auth::id())->get();
         return view('admin.tipoatividade.index',compact('registros'));
     }
 
@@ -27,7 +28,8 @@ class TipoAtividadeController extends Controller
 
     public function loadTipos()
     {
-        $tipoAtividades = TipoAtividade::all();
+        //$tipoAtividades = TipoAtividade::all();
+        $tipoAtividades = TipoAtividade::where('user_id', Auth::id())->get();
         //return $professores;//response()->json($professors);
         return response()->json($tipoAtividades);
     }
@@ -42,7 +44,7 @@ class TipoAtividadeController extends Controller
     public function salvar(Request $req)
     { 
       $dados = $req->all();
-      
+      $dados['user_id'] = Auth::id();
       TipoAtividade::create($dados);
 
       return redirect()->route('admin.tipoatividade');

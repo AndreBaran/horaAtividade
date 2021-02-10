@@ -1,27 +1,26 @@
 <!DOCTYPE html>
-<html>
-
+<html>  
 <head>
   <meta charset='utf-8' />
+  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link href="{{asset('assets/fullcalendar/lib/main.css')}}" rel='stylesheet' />
-
   <link href="{{asset('assets/fullcalendar/css/style.css')}}" rel='stylesheet' />
-
-
   <meta name="csrf-token" content="{{ csrf_token() }}">
-
 </head>
-
 <body>
+@include('layouts._includes.navbar')
   @include('admin.fullcalendar.modal-calendar')
-  <nav class="nav">
-    <button id = 'btn-divcalendario' class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+  
+  <nav class="navbar navbar-light bg-dark" style="background-color: #766f6f;">
+  <form class="container-fluid justify-content-start">
+    <button id = 'btn-divcalendario' class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>Calendario
     </button>
-    <button id='btn-divtabela' class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <button id='btn-divtabela' class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>Tabela
     </button>
+    </form>
   </nav>
   <div id='wrap'>
     <div id="divDate" class='containerTabela' style="display:none">
@@ -29,10 +28,10 @@
         @include('admin.fullcalendar.totais')
       </div>
       
-      <input  name="startView" class="form-control date-time" id="startView">
-      <input  name="endView" class="form-control date-time" id="endView">
-      <input  name="startLastView" class="form-control date-time" id="startLastView">
-      <input  name="endLastView" class="form-control date-time" id="endLastView">
+      <input type="hidden" name="startView" class="form-control date-time" id="startView">
+      <input type="hidden" name="endView" class="form-control date-time" id="endView">
+      <input type="hidden" name="startLastView" class="form-control date-time" id="startLastView">
+      <input type="hidden" name="endLastView" class="form-control date-time" id="endLastView">
     </div>
     <div id='calendario' class='containerCalendario'  style="display:block">
       <div id='calendar' data-route-load-atividades={{route('routeLoadAtividades')}} data-route-atividade-update={{route('routeAtividadeUpdate')}} data-route-atividade-add={{route('routeAtividadeAdd')}} data-route-atividade-destroy={{route('routeAtividadeDestroy')}} data-route-load-professores={{route('routeLoadProfessores')}} data-route-load-tipos={{route('routeLoadTipos')}} data-route-load-infotipos={{route('routeLoadTipoinfos','')}} data-route-atividade-weeks={{route('routeLoadAtividadeWeeks')}}></div>

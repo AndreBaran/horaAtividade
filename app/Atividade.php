@@ -13,7 +13,7 @@ class Atividade extends Model
        //  use Notifiable;
 
         protected $fillable = [
-            'title', 'start','end','color','professor_id','tipoatividade_id',
+            'title', 'start','end','color','professor_id','tipoatividade_id','user_id',
         ];
         public function professor()
         {
