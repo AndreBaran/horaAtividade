@@ -1,8 +1,4 @@
-body {
-    margin-top: 0px;
-    font-size: 14px;
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-  }
+
 
   #external-events {
     position: fixed;
@@ -47,4 +43,17 @@ body {
   }
   #table{
     width: 50%;
+  }
+
+  .box {
+    float: left;
+    width: 33.33%;
+  }
+
+  
+  
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
   }

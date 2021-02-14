@@ -7,8 +7,7 @@
 <div class="form-check">
   <p>
     <label>
-      <input type="checkbox" value="{{isset($registro->tipo) ? $registro->tipo : '0'}}" 
-      onchange="doalert(this)" />
+      <input type="checkbox" value="{{isset($registro->tipo) ? $registro->tipo : '0'}}" />
       <span>Hora Atividade</span>
     </label>
   </p>

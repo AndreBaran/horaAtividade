@@ -31,13 +31,7 @@
                              
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="title" class="col-sm-4 col-form-label">Titulo</label>
-                        <div class="col-sm-8">
-                            <input type="text" name="title" class="form-control" id="title">
-                            <input type="hidden" name="id">
-                        </div>
-                    </div>
+  
                     <div class="form-group row">
                         <label for="start" class="col-sm-4 col-form-label">Data/hora Inicial</label>
                         <div class="col-sm-8">
@@ -63,6 +57,12 @@
                 <button type="button" class="btn btn-danger deleteEvent">Excluir</button>
                 <button type="button" class="btn btn-primary saveEvent">Salvar</button>
             </div>
+            <div type="hidden" class="form-group row">
+                        <div class="col-sm-8">
+                            <input type="hidden" type="text" name="title" class="form-control" id="title">
+                            <input type="hidden" name="id">
+                        </div>
+                    </div>
         </div>
     </div>
 </div>

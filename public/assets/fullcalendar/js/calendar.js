@@ -1,6 +1,7 @@
 
-document.addEventListener('DOMContentLoaded', function () {
-
+var botao = document.getElementById("botao");
+botao.addEventListener("click",  function () {
+  //document.addEventListener('DOMContentLoaded', function () {
   /* initialize the external events
   -----------------------------------------------------------------*/
 
@@ -45,6 +46,20 @@ document.addEventListener('DOMContentLoaded', function () {
     selectable: true,
     height: 550,
     initialView: 'timeGridWeek',
+    eventSources: [
+
+      // your event source
+      {
+        url: routeAtividades('routeLoadAtividades'), // use the `url` property
+        extraParams: {
+          idProfessor:  $("#cmbProfessor2 option:selected").val(),
+          idTurma:  $("#cmbAtividade2 option:selected").val()
+        },
+      }
+  
+      // any other sources...
+  
+    ],
     // allDayDefault: true,
     hiddenDays: [0, 6],
     businessHours: {
@@ -179,10 +194,12 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log(end);
       console.log('ffffffffffffffffffff');
     },
-    events:routeAtividades('routeLoadAtividades'),
+    
     
   });
   calendar.render();
+
+  //events:routeAtividades('routeLoadAtividades'),
   //console.log('aaaaaaaaaaaaaaaaaaaaaaa');
   //console.log(calendar.startTime.val);
   //console.log('aaaaaaaaaaaaaaaaaaaaaaa');
@@ -192,6 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // console.log(routeAtividades('routeLoadAtividades'));
 //console.log('aaa');
 //console.log(routeAtividades('routeLoadAtividades'));
+//routeAtividades('routeLoadAtividades');
 
 //console.log(routeAtividades('routeLoadProfessores'));
 //console.log('aaaaaaaaaaaaaaaaaaaaaaa');

@@ -43,8 +43,30 @@ class AtividadeController extends Controller
     {   $returnedColumns = ['id', 'title', 'start', 'end', 'color','professor_id','tipoatividade_id'];
         $start = (!empty($request->start)) ? ($request->start) : ('');
         $end = (!empty($request->end)) ? ($request->end) : ('');
+
+        $idProfessor = (!empty($request->idProfessor)) ? ($request->idProfessor) : ('');
+        $idTurma = (!empty($request->idTurma)) ? ($request->idTurma) : ('');
+      
+
+
         $atividade = Atividade::whereBetween('start', [$start, $end])
-                                ->where('user_id', Auth::id())
+                                ->where('user_id', Auth::id())                              
+                               // ->where('professor_id',$idProfessor)
+                                //->where('tipoatividade_id',$idTurma)  
+                                ->where(function($query) use ($idProfessor, $idTurma) {
+                                    if ((!empty($idProfessor)) and (!empty($idTurma))) {
+                                        return $query->where('professor_id', $idProfessor)
+                                              ->where('tipoatividade_id', $idTurma);
+                                    }
+                                    else if (!empty($idTurma)) {
+                                        return $query->where('tipoatividade_id', $idTurma);
+                                    }
+                                    else if (!empty($idProfessor)) {
+                                        return $query->where('professor_id', $idProfessor);
+                                    }
+                                })
+                                
+
                                 ->get($returnedColumns);
        
         //$atividade = Atividade::all();

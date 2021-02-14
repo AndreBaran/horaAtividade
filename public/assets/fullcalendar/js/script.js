@@ -1,5 +1,8 @@
 
-
+window.onbeforeunload = function()
+{
+    document.getElementById("botao").click();
+}
 
 $(function () {
 
@@ -15,10 +18,12 @@ $(function () {
        // console.log(dados);
         if (dados.length > 0) {
             var option = '';
+            option += '<option value=""></option>';
             $.each(dados, function (i, obj) {
                 option += '<option value="' + obj.id + '">' + obj.name + '</option>';
             })
             $('#cmbProfessor').html(option).show();
+            $('#cmbProfessor2').html(option).show();
         } else {
             Reset();
             $('#mensagem').html('<span class="mensagem">Não foram encontrados Professores!</span>');
@@ -29,6 +34,7 @@ $(function () {
         console.log(dados);
         if (dados.length > 0) {
             var option = '';
+            option += '<option value=""></option>';
             $.each(dados, function (i, obj) {
                 option += '<option value="' + obj.id + '">' + obj.name + '</option>';
             })
@@ -42,10 +48,12 @@ $(function () {
         console.log(dados);
         if (dados.length > 0) {
             var option = '';
+            option += '<option value=""></option>';
             $.each(dados, function (i, obj) {
                 option += '<option value="' + obj.id + '">' + obj.name + '</option>';
             })
             $('#cmbAtividade').html(option).show();
+            $('#cmbAtividade2').html(option).show();
         };
     });
 
