@@ -17,6 +17,9 @@ table {
       <th scope="col">Professor</th>
       <th scope="col">Horas em Sala de Aula</th>
       <th scope="col">Horas em Atividade</th>
+      <th scope="col">Horas Direito</th>
+      <th scope="col">Saldo De Horas Atividade</th>
+      <th scope="col">Horas Trabalhadas Acumuldadas</th>
     </tr>
   </thead>
   <tbody id="tbodyAtividade">

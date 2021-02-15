@@ -137,7 +137,7 @@ $(function () {
     });
 })
 
-
+//let objCalendar;
 
 function sendAtividade(route, data_) {
  //   console.log('***************');
@@ -151,7 +151,10 @@ function sendAtividade(route, data_) {
         success: function (json) {
             console.log(json);
             if (json) {
-                location.reload();
+                objCalendar.refetchEvents(); 
+                //console.log(location);
+                //$('#calendario').load(location.href +  '#calendario');
+                //location.reload();
             }
         },
         error: function (json) {
@@ -236,6 +239,28 @@ btntabela.addEventListener('click', function() {
     containerCalendario.style.display = 'none';
   }
 });
+
+function printDiv(divID) {
+ // console.log(objCalendar);
+    
+
+    //pega o Html da DIV
+    var divElements = document.getElementById(divID).innerHTML;
+    //pega o HTML de toda tag Body
+    var oldPage = document.body.innerHTML;
+
+    //Alterna o body 
+    document.body.innerHTML = 
+      "<html><head><title></title></head><body>" + 
+      divElements + "</body>";
+
+    //Imprime o body atual
+    window.print();
+
+    //Retorna o conteudo original da página. 
+    document.body.innerHTML = oldPage;
+
+}
 
 var btncalendario = document.getElementById('btn-divcalendario');
 

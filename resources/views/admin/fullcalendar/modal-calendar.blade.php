@@ -16,7 +16,7 @@
                     <div class="form-group row" >
                         <label for="title" class="col-sm-4 col-form-label">Professor</label>
                         <div class="col-sm-8" >
-                                <select class="form-select " style="width:300px;" aria-label="Default select example" id="cmbProfessor">
+                                <select class="form-select " style="width:300px;" aria-label="Default select example" id="cmbProfessor" name="cmbProfessor">
                                     
                                 </select>
                              
@@ -25,7 +25,7 @@
                     <div class="form-group row" >
                         <label for="title" class="col-sm-4 col-form-label">Atividade</label>
                         <div class="col-sm-8" >
-                                <select class="form-select " style="width:300px;" aria-label="Default select example" id="cmbAtividade">
+                                <select class="form-select " style="width:300px;" aria-label="Default select example" id="cmbAtividade" name="cmbAtividade">
                                     
                                 </select>
                              

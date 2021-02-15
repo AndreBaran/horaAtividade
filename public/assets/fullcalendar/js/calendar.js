@@ -44,7 +44,10 @@ botao.addEventListener("click",  function () {
     navLinks: true,
     eventLimit: false,
     selectable: true,
-    height: 550,
+    //height: 550,
+    contentHeight: 600,
+    slotDuration: '00:30:00',
+    
     initialView: 'timeGridWeek',
     eventSources: [
 
@@ -100,7 +103,8 @@ botao.addEventListener("click",  function () {
       $("#modalCalendar").modal('show');
       $("#modalCalendar #titleModal").text('Alterar Atividade');
       $("#modalCalendar button.deleteEvent").css("display", "flex");
-      console.log(element);
+      console.log(element.event._def.extendedProps);
+      console.log('aquiiiiiiiiiiiiiiiiii');
 
       let id = element.event.id;
       $("#modalCalendar input[name='id']").val(id);
@@ -116,6 +120,10 @@ botao.addEventListener("click",  function () {
 
       let color = element.event.backgroundColor;
       $("#modalCalendar input[name='color']").val(color);
+      $("#modalCalendar select[name='cmbProfessor']").val(element.event._def.extendedProps.professor_id);
+      
+      $("#modalCalendar select[name='cmbAtividade']").val(element.event._def.extendedProps.tipoatividade_id);
+      
 
       //$("#modalCalendar").modal({
       //  show: true
@@ -197,7 +205,10 @@ botao.addEventListener("click",  function () {
     
     
   });
-  calendar.render();
+  objCalendar = calendar;
+  objCalendar.render();
+
+  //calendar.render();
 
   //events:routeAtividades('routeLoadAtividades'),
   //console.log('aaaaaaaaaaaaaaaaaaaaaaa');

@@ -67,6 +67,9 @@
       <div id='calendario' class='containerCalendario' style="display:block">
         <div id='calendar' data-route-load-atividades={{route('routeLoadAtividades')}} data-route-atividade-update={{route('routeAtividadeUpdate')}} data-route-atividade-add={{route('routeAtividadeAdd')}} data-route-atividade-destroy={{route('routeAtividadeDestroy')}} data-route-load-professores={{route('routeLoadProfessores')}} data-route-load-tipos={{route('routeLoadTipos')}} data-route-load-infotipos={{route('routeLoadTipoinfos','')}} data-route-atividade-weeks={{route('routeLoadAtividadeWeeks')}}></div>
       </div>
+      <div class="box">
+      <button id="botao" type="button2"  class="btn btn-sm btn-outline-secondary" justify-content: flex-end onclick="printDiv('calendario')">Imprimir</button>
+    </div>
 
     </div>
 
@@ -81,6 +84,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script>let objCalendar;</script>
     <script src="{{asset('assets/fullcalendar/js/script.js')}}"></script>
     <script src="{{asset('assets/fullcalendar/js/calendar.js')}}"></script>
     <script src="{{asset('assets/fullcalendar/js/total.js')}}"></script>
