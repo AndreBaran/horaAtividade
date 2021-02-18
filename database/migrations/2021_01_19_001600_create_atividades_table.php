@@ -24,8 +24,8 @@ class CreateAtividadesTable extends Migration
             $table->foreign('professor_id')->references('id')->on('professors');
             $table->unsignedBigInteger('tipoatividade_id')->nullable()->index();
             $table->foreign('tipoatividade_id')->references('id')->on('tipo_atividades');
-            $table->unsignedBigInteger('user_id')->nullable()->index();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('escola_id')->nullable()->index();
+            $table->foreign('escola_id')->references('id')->on('escolas');
         });
     }
 

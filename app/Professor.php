@@ -10,10 +10,10 @@ class Professor extends Model
     //use Notifiable;
 
     protected $fillable = [
-        'id','name', 'carga_horaria','user_id'
+        'id','name', 'carga_horaria','user_id','escola_id'
     ];
-    public function user()
+    public function escola()
     {
-      return $this->hasOne('App\User', 'user_id');
+      return $this->hasOne('App\Escola', 'escola_id');
     }
 }

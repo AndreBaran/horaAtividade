@@ -16,7 +16,8 @@ class TipoAtividadeController extends Controller
     {
         //
         //$registros = TipoAtividade::all();
-        $registros = TipoAtividade::where('user_id', Auth::id())->get();
+        //$registros = TipoAtividade::where('user_id', Auth::id())->get();
+        $registros = TipoAtividade::where('escola_id', Auth::user()->escola_id)->get();
         return view('admin.tipoatividade.index',compact('registros'));
     }
 
@@ -29,7 +30,8 @@ class TipoAtividadeController extends Controller
     public function loadTipos()
     {
         //$tipoAtividades = TipoAtividade::all();
-        $tipoAtividades = TipoAtividade::where('user_id', Auth::id())->get();
+        //$tipoAtividades = TipoAtividade::where('user_id', Auth::id())->get();
+        $tipoAtividades = TipoAtividade::where('escola_id', Auth::user()->escola_id)->get();
         //return $professores;//response()->json($professors);
         return response()->json($tipoAtividades);
     }
@@ -44,7 +46,8 @@ class TipoAtividadeController extends Controller
     public function salvar(Request $req)
     { 
       $dados = $req->all();
-      $dados['user_id'] = Auth::id();
+     // $dados['user_id'] = Auth::id();
+      $dados['escola_id'] = Auth::user()->escola_id;
       TipoAtividade::create($dados);
 
       return redirect()->route('admin.tipoatividade');

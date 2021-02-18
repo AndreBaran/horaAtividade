@@ -19,8 +19,8 @@ class CreateTipoAtividadesTable extends Migration
             $table->string('name');
             $table->string('color',7);
             $table->boolean('tipo')->default(0);;
-            $table->unsignedBigInteger('user_id')->nullable()->index();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('escola_id')->nullable()->index();
+            $table->foreign('escola_id')->references('id')->on('escolas');
         });
     }
 

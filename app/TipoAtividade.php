@@ -10,10 +10,10 @@ class TipoAtividade extends Model
     //use Notifiable;
 
     protected $fillable = [
-        'id','name', 'tipo','color','user_id',
+        'id','name', 'tipo','color','user_id','escola_id'
     ];
-    public function user()
+    public function escola()
     {
-      return $this->hasOne('App\User', 'user_id');
+      return $this->hasOne('App\Escola', 'escola_id');
     }
 }

@@ -15,8 +15,8 @@ class ProfessorController extends Controller
      */
     public function index()
     {
-        //
-        $registros = Professor::where('user_id', Auth::id())->get();
+        //'escola_id', Auth::user()->escola_id
+        $registros = Professor::where('escola_id', Auth::user()->escola_id)->get();
         //$registros = Professor::all();
         return view('admin.professor.index',compact('registros'));
     }
@@ -33,7 +33,9 @@ class ProfessorController extends Controller
     public function loadProfessores()
     {
         //$professores = Professor::all();
-        $professores = Professor::where('user_id', Auth::id())->get();
+        //$professores = Professor::where('user_id', Auth::id())->get();
+        $professores = Professor::where('escola_id', Auth::user()->escola_id)->get();
+       
         //return $professores;//response()->json($professors);
         return response()->json($professores);
     }
@@ -41,7 +43,9 @@ class ProfessorController extends Controller
     public function salvar(Request $req)
     {
       $dados = $req->all();
-      $dados['user_id'] = Auth::id();
+      //$dados['user_id'] = Auth::id();
+      $dados['escola_id'] = Auth::user()->escola_id;
+      //'escola_id', Auth::user()->escola_id
       Professor::create($dados);
 
       return redirect()->route('admin.professor');

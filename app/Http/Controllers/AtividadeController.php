@@ -51,7 +51,7 @@ class AtividadeController extends Controller
 
 
         $atividade = Atividade::whereBetween('start', [$start, $end])
-            ->where('user_id', Auth::id())
+            ->where('escola_id', Auth::user()->escola_id)
             // ->where('professor_id',$idProfessor)
             //->where('tipoatividade_id',$idTurma)  
             ->where(function ($query) use ($idProfessor, $idTurma) {
@@ -113,7 +113,7 @@ class AtividadeController extends Controller
 
         $atividade = Atividade::from('atividades as at')
             ->whereBetween('at.start', [$start, $end])
-            ->where('at.user_id', Auth::id())
+            ->where('at.escola_id', Auth::user()->escola_id)
             ->where(function ($query) use ($idProfessor, $idTurma) {
                 if ((!empty($idProfessor)) and (!empty($idTurma))) {
                     return $query->where('professor_id', $idProfessor)
@@ -138,7 +138,7 @@ class AtividadeController extends Controller
         //->toSql();
         $atividade = Atividade::from('atividades as at')
             ->whereBetween('at.start', [$start, $end])
-            ->where('at.user_id', Auth::id())
+            ->where('at.escola_id', Auth::user()->escola_id)
             ->groupBy('professors.name','horastrabalhadas')
             ->leftJoin('professors', 'at.professor_id', '=', 'professors.id')
             ->leftJoin('tipo_atividades', 'at.tipoatividade_id', '=', 'tipo_atividades.id')
@@ -148,7 +148,7 @@ class AtividadeController extends Controller
             ->addSelect([
                 'horastrabalhadas' => Atividade::from('atividades as atAux')
                     ->whereBetween('atAux.start', [$startLast, $endLast])
-                    ->where('atAux.user_id', Auth::id())
+                    ->where('atAux.escola_id', Auth::user()->escola_id)
                     ->whereRaw ('atAux.professor_id=at.professor_id')
                     ->selectRaw('sum(TIMESTAMPDIFF(minute,atAux.start,atAux.end))/60 as horastrabalhadas')
             ])
@@ -211,7 +211,8 @@ class AtividadeController extends Controller
 
     public function add(AtividadeRequest $request)
     {
-        $request['user_id'] = Auth::id();
+        $request['escola_id'] = Auth::user()->escola_id;
+        
         Atividade::create($request->all());
         //  $professores = Professor::all();
         return response()->json(true);
@@ -223,7 +224,7 @@ class AtividadeController extends Controller
 
 
         $atividade->fill($request->all());
-        $atividade['user_id'] = Auth::id();
+        $request['escola_id'] = Auth::user()->escola_id;
         $atividade->save();
 
         return response()->json(true);

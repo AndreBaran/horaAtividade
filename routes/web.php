@@ -47,6 +47,23 @@ Route::get('/admin/tipoatividade/editar/{id}',['as'=>'admin.tipoatividade.editar
 Route::put('/admin/tipoatividade/atualizar/{id}',['as'=>'admin.tipoatividade.atualizar','uses'=>'TipoAtividadeController@atualizar']);
 Route::get('/admin/tipoatividade/deletar/{id}',['as'=>'admin.tipoatividade.deletar','uses'=>'TipoAtividadeController@deletar']);
 
+Route::get('/admin/escola',['as'=>'admin.escola','uses'=>'EscolaController@index']);
+Route::get('/admin/escola/adicionar',['as'=>'admin.escola.adicionar','uses'=>'EscolaController@adicionar']);
+Route::post('/admin/escola/salvar',['as'=>'admin.escola.salvar','uses'=>'EscolaController@salvar']);
+Route::get('/admin/escola/editar/{id}',['as'=>'admin.escola.editar','uses'=>'EscolaController@editar']);    
+Route::put('/admin/escola/atualizar/{id}',['as'=>'admin.escola.atualizar','uses'=>'EscolaController@atualizar']);
+Route::get('/admin/escola/deletar/{id}',['as'=>'admin.escola.deletar','uses'=>'EscolaController@deletar']);
+
+
+
+Route::get('/admin/user',['as'=>'admin.user','uses'=>'UserController@index']);
+Route::get('/admin/user/adicionar',['as'=>'admin.user.adicionar','uses'=>'UserController@adicionar']);
+Route::post('/admin/user/salvar',['as'=>'admin.user.salvar','uses'=>'UserController@salvar']);
+Route::get('/admin/user/editar/{id}',['as'=>'admin.user.editar','uses'=>'UserController@editar']);    
+Route::put('/admin/user/atualizar/{id}',['as'=>'admin.user.atualizar','uses'=>'UserController@atualizar']);
+Route::get('/admin/user/deletar/{id}',['as'=>'admin.user.deletar','uses'=>'UserController@deletar']);
+
+
 //Route::get('/admin/fullcalendar', 'FullCalendarController@index')->name('home');
 Route::get('/admin/fullcalendar', ['as'=>'admin.fullcalendar','uses'=>'FullCalendarController@index']);
 Route::get('/admin/fullcalendar/load-atividades', 'AtividadeController@loadAtividades')->name('routeLoadAtividades');
