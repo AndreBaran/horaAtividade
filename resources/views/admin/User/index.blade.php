@@ -7,7 +7,7 @@
   <br>
     <h3 class="center">Lista de Usuarios</h3>
     <div class="row">
-      <table>
+      <table class="table">
         <thead>
           <tr>
             <th>Id</th>
@@ -24,8 +24,8 @@
               <td>{{ $registro->email }}</td>
             </tr>
             <td class="right-align">
-              <a class="btn deep-orange" href="{{ route('admin.user.editar',$registro->id) }}">Editar</a>
-              <a class="btn red" href="{{ route('admin.user.deletar',$registro->id) }}">Deletar</a>
+              <a class="btn btn-outline-dark" href="{{ route('admin.user.editar',$registro->id) }}">Editar</a>
+              <a class="btn btn-outline-danger" href="{{ route('admin.user.deletar',$registro->id) }}">Deletar</a>
             </td>
           @endforeach
         </tbody>

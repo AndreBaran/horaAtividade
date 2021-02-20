@@ -71,6 +71,10 @@ Route::put('/admin/fullcalendar/atividade-update', 'AtividadeController@update')
 Route::post('/admin/fullcalendar/atividade-add', 'AtividadeController@add')->name('routeAtividadeAdd');
 Route::delete('/admin/fullcalendar/atividade-destroy', 'AtividadeController@destroy')->name('routeAtividadeDestroy');
 
+Route::put('/admin/mensagem/mensagem-update', 'MensagemController@update')->name('routeMensagemUpdate');
+Route::post('/admin/mensagem/mensagem-add', 'MensagemController@add')->name('routeMensagemAdd');
+Route::delete('/admin/mensagem/mensagem-destroy', 'MensagemController@destroy')->name('routeMensagemDestroy');
+
 //Route::get('/admin/fullcalendar/professor-load', 'AtividadeController@loadProfessores')->name('routeLoadProfessores');
 
 Route::get('/admin/professor/professor-load', 'ProfessorController@loadProfessores')->name('routeLoadProfessores');
@@ -80,6 +84,12 @@ Route::get('/admin/tipoatividade/tipoinfo-load/{id}', 'TipoAtividadeController@l
 
 Route::get('/admin/atividade/load-atividade-week', 'AtividadeController@loadAtividadeWeeks')->name('routeLoadAtividadeWeeks');
 
+Route::get('/admin/mensagem',['as'=>'admin.mensagem','uses'=>'MensagemController@index']);
+Route::get('/admin/mensagem/adicionar',['as'=>'admin.mensagem.adicionar','uses'=>'MensagemController@adicionar']);
+Route::post('/admin/mensagem/salvar',['as'=>'admin.mensagem.salvar','uses'=>'MensagemController@salvar']);
+Route::get('/admin/mensagem/editar/{id}',['as'=>'admin.mensagem.editar','uses'=>'MensagemController@editar']);    
+Route::put('/admin/mensagem/atualizar/{id}',['as'=>'admin.mensagem.atualizar','uses'=>'MensagemController@atualizar']);
+Route::get('/admin/mensagem/deletar/{id}',['as'=>'admin.mensagem.deletar','uses'=>'MensagemController@deletar']);
 
 
 

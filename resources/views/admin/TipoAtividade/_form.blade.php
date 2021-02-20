@@ -4,22 +4,18 @@
     <input id="text" type="text" name="name" value="{{isset($registro->name) ? $registro->name : ''}}">
   </div>
 </div>
-<div class="form-check">
-  <p>
-    <label>
-      <input type="checkbox" value="{{isset($registro->tipo) ? $registro->tipo : '0'}}" />
-      <span>Hora Atividade</span>
-    </label>
-  </p>
-  <p>
-</div>
+
 <div class="form-group row">
   <label>Modo Atividade</label>
-  <select class="browser-default" value="{{isset($registro->tipo) ? $registro->tipo : '0'}}">
-    <option value=0>Sala de Aula</option>
-    <option value=1>Hora Atividade</option>
+  <select name="tipo" id="tipo" class="browser-default" value="{{isset($registro->tipo) ? $registro->tipo : '0'}}">
+    <option value=0 {{ !isset($registro->tipo) ? '' :
+      ($registro->tipo == 0 ? 'selected' : '') }}>Sala de Aula</option>
+    <option value=1 {{ !isset($registro->tipo) ? '' :
+      ($registro->tipo == 1 ? 'selected' : '') }}>Hora Atividade</option>
   </select>
 </div>
+
+
 <div class="form-group row">
   <label for="color" class="col-sm-4 col-form-label">Cor do Evento</label>
   <div class="col-sm-8">

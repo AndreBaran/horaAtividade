@@ -7,9 +7,9 @@
   <br>
     <h3 class="center">Adicionar Tipo Atividade</h3>
     <div class="row">
-      <form class="" action="{{route('admin.user.salvar')}}" method="post" enctype="multipart/form-data">
+      <form class="" action="{{route('admin.mensagem.salvar')}}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
-        @include('admin.user._form')
+        @include('admin.mensagem._form')
         <button class="btn btn-outline-success">Salvar</button>
       </form>
     </div>

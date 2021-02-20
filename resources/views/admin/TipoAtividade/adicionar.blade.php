@@ -10,7 +10,7 @@
       <form class="" action="{{route('admin.tipoatividade.salvar')}}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
         @include('admin.tipoatividade._form')
-        <button class="btn deep-orange">Salvar</button>
+        <button class="btn btn-outline-success">Salvar</button>
       </form>
     </div>
   </div>

@@ -7,7 +7,7 @@
   <br>
     <h3 class="center">Lista de Atividades</h3>
     <div class="row">
-      <table>
+      <table class="table">
         <thead>
           <tr>
             <th>Id</th>
@@ -24,15 +24,15 @@
               <td>{{ $registro->tipo }}</td>
             </tr>
             <td class="right-align">
-              <a class="btn deep-orange" href="{{ route('admin.tipoatividade.editar',$registro->id) }}">Editar</a>
-              <a class="btn red" href="{{ route('admin.tipoatividade.deletar',$registro->id) }}">Deletar</a>
+              <a class="btn btn-outline-dark" href="{{ route('admin.tipoatividade.editar',$registro->id) }}">Editar</a>
+              <a class="btn btn-outline-danger" href="{{ route('admin.tipoatividade.deletar',$registro->id) }}">Deletar</a>
             </td>
           @endforeach
         </tbody>
       </table>
     </div>
     <div class="row">
-      <a class="btn blue" href="{{ route('admin.tipoatividade.adicionar') }}">Adicionar</a>
+      <a class="btn btn-outline-success" href="{{ route('admin.tipoatividade.adicionar') }}">Adicionar</a>
 
     </div>
 

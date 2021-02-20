@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Escola;
+use App\Professor;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,8 +33,9 @@ class UserController extends Controller
 
   public function adicionar()
   {
-    $tipoatividades = User::all();
-    return view('admin.user.adicionar', compact('tipoatividades'));
+    $professores = Professor::where('escola_id', Auth::user()->escola_id)->get();
+    $escolas = Escola::all();
+    return view('admin.user.adicionar', compact('professores','escolas'));
   }
 
   public function loadTipos()
@@ -54,8 +57,9 @@ class UserController extends Controller
 
   public function salvar(Request $req)
   {
+    
     $dados = $req->all();
-
+   // dd($dados);
     User::create($dados);
 
     return redirect()->route('admin.user');
@@ -64,13 +68,16 @@ class UserController extends Controller
   public function editar($id)
   {
     $registro = User::find($id);
-    return view('admin.user.editar', compact('registro'));
+    $professores = Professor::where('escola_id', Auth::user()->escola_id)->get();
+    $escolas = Escola::all();
+    return view('admin.user.editar', compact('registro'), compact('professores','escolas'));
   }
 
   public function atualizar(Request $req, $id)
   {
     $dados = $req->all();
-
+  
+    //dd($dados);
     User::find($id)->update($dados);
 
     return redirect()->route('admin.user');
