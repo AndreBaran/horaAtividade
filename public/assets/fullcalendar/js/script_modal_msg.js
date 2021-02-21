@@ -118,6 +118,150 @@ $(function () {
         sendAtividade_msg(route, Msg);
     });
 
+    $(".refuseEvent_msg").click(function () {
+        let professor = $("#cmbProfessor_msg option:selected").text();
+        console.log(professor);
+        let idProfessor = $("#cmbProfessor_msg option:selected").val();
+        console.log(idProfessor);
+
+        let Atividade = $("#cmbAtividade_msg option:selected").text();
+        console.log(Atividade);
+        let idAtividade = $("#cmbAtividade_msg option:selected").val();
+        console.log(idAtividade);
+        let start = moment($("#modalMensagem input[name='start_msg']").val(), "DD/MM/YYYY HH:mm:ss").format("YYYY-MM-DD HH:mm:ss");
+        console.log($("#modalMensagem input[name='start_msg']").val());
+        console.log(start);
+        let end = moment($("#modalMensagem input[name='end_msg']").val(), "DD/MM/YYYY HH:mm:ss").format("YYYY-MM-DD HH:mm:ss");
+        console.log($("#modalMensagem input[name='end_msg']").val());
+        console.log(end);
+        let mensagem = $("#modalMensagem textarea[name='mensagem_text_msg']").val();
+        console.log(mensagem);
+        let status = 2; //$("#status_msg option:selected").val();
+        console.log(status);
+        console.log("aaaaaaaaaa");
+        console.log(routeTeste_msg(''));
+
+        let tipoAtividade =getTipoAtividade_msg(routeAtividades_msg('routeLoadInfotipos'),idAtividade);
+        let color = tipoAtividade.color;//$("#modalCalendar input[name='color']").val();
+
+        let id = $("#modalMensagem input[name='id_msg']").val();
+
+        let descricao = professor+' '+Atividade;
+        console.log('a');
+        let Msg = {
+            title: descricao,
+            start: start,
+            end: end,
+            mensagem: mensagem,
+            status: status,
+            color: color,
+            //extendedProps.event.professor_id=idProfessor,
+            professor_id: idProfessor,
+            tipoatividade_id: idAtividade,
+        };
+        console.log('b');
+        let route;
+        console.log(id);
+        if (id == '') {
+            console.log('**********');
+            console.log('c');
+        } else {
+            console.log('-------------');
+            console.log('d');
+        }
+
+        if (id == '') {
+            route = routeAtividades_msg('routeMensagemAdd');
+        } else {
+            route = routeAtividades_msg('routeMensagemUpdate');
+            Msg.id = id;
+            console.log('Msg.id');
+            console.log(Msg.id);
+            Msg._method = 'PUT';
+        }
+        console.log(route);
+        console.log('-------------');
+
+        console.log('-------------');
+
+        sendAtividade_msg(route, Msg);
+    });
+
+    $(".acceptEvent_msg").click(function () {
+        let professor = $("#cmbProfessor_msg option:selected").text();
+        console.log(professor);
+        let idProfessor = $("#cmbProfessor_msg option:selected").val();
+        console.log(idProfessor);
+
+        let Atividade = $("#cmbAtividade_msg option:selected").text();
+        console.log(Atividade);
+        let idAtividade = $("#cmbAtividade_msg option:selected").val();
+        console.log(idAtividade);
+        let start = moment($("#modalMensagem input[name='start_msg']").val(), "DD/MM/YYYY HH:mm:ss").format("YYYY-MM-DD HH:mm:ss");
+        console.log($("#modalMensagem input[name='start_msg']").val());
+        console.log(start);
+        let end = moment($("#modalMensagem input[name='end_msg']").val(), "DD/MM/YYYY HH:mm:ss").format("YYYY-MM-DD HH:mm:ss");
+        console.log($("#modalMensagem input[name='end_msg']").val());
+        console.log(end);
+        let mensagem = $("#modalMensagem textarea[name='mensagem_text_msg']").val();
+        console.log(mensagem);
+        let status = 1; //$("#status_msg option:selected").val();
+        console.log(status);
+        console.log("aaaaaaaaaa");
+        console.log(routeTeste_msg(''));
+
+        let tipoAtividade =getTipoAtividade_msg(routeAtividades_msg('routeLoadInfotipos'),idAtividade);
+        let color = tipoAtividade.color;//$("#modalCalendar input[name='color']").val();
+
+        let id = $("#modalMensagem input[name='id_msg']").val();
+
+        let descricao = professor+' '+Atividade;
+        console.log('a');
+        let Msg = {
+            title: descricao,
+            start: start,
+            end: end,
+            mensagem: mensagem,
+            status: status,
+            color: color,
+            //extendedProps.event.professor_id=idProfessor,
+            professor_id: idProfessor,
+            tipoatividade_id: idAtividade,
+        };
+        let Event = {
+            title: descricao,
+            start: start,
+            end: end,
+            color: color,
+            //extendedProps.event.professor_id=idProfessor,
+            professor_id: idProfessor,
+            tipoatividade_id: idAtividade,
+        };
+        console.log('b');
+        let route;
+
+        if (id == '') {
+            route = routeAtividades_msg('routeMensagemAdd');
+        } else {
+            route = routeAtividades_msg('routeMensagemUpdate');
+            Msg.id = id;
+            console.log('Msg.id');
+            console.log(Msg.id);
+            Msg._method = 'PUT';
+        }
+        console.log(route);
+        sendAtividade_msg(route, Msg);
+
+        //Criar atividade
+        route = routeAtividades_msg('routeAtividadeAdd');
+       
+        console.log('-------------');
+
+        console.log('-------------');
+
+        sendAtividade_msg(route, Event);
+    });
+
     $(".deleteEvent_msg").click(function () {
 
         let id = $("#modalMensagem input[name_msg='id']").val();
@@ -159,7 +303,7 @@ function sendAtividade_msg(route, data_) {
             if (json) {
                 //console.log(location);
                 //$('#calendario').load(location.href +  '#calendario');
-                location.reload();
+                //location.reload();
             }
         },
         error: function (json) {

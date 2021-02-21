@@ -30,7 +30,7 @@
           <a class="nav-link" href="{{route('admin.fullcalendar')}}">Hora Atividade</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{route('admin.mensagem')}}">Mensagens <span class="badge badge-light">9</span></a>
+          <a id="msg" name="msg" class="nav-link" href="{{route('admin.mensagem')}}">Mensagens <span id="pendente" name="pendente" class="badge badge-light">0</span></a>
         </li>
         @endif
         @endif
@@ -74,3 +74,7 @@
     </div>
   </div>
 </nav>
+
+<div id='mensagem_dataset_pen' data-route-mensagem-pendentes={{route('routeMensagemPendentes')}}></div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="{{asset('assets/fullcalendar/js/script_home.js')}}"></script>

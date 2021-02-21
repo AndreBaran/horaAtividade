@@ -39,6 +39,30 @@ class MensagemController extends Controller
         return view('admin.mensagem.index', compact('registros'));
     }
 
+    public function loadPendentes()
+    {
+        //
+        //$registros = TipoAtividade::all();
+        //$registros = TipoAtividade::where('user_id', Auth::id())->get();
+
+        if (Auth::user()->tipo == '0') {
+            $registros = Mensagem::all();
+        } else {
+            if (Auth::user()->tipo == '1') {
+                $registros = Mensagem::where('escola_id', Auth::user()->escola_id)
+                ->where('status',0)
+                    ->get();
+            } else {
+                $registros = Mensagem::where('escola_id', Auth::user()->escola_id)
+                    ->where('user_id', Auth::id())
+                    ->where('status','<>',0)
+                    ->get();
+            }
+        }
+       //$registros = Mensagem::all();
+        return response()->json($registros);
+    }
+
     public function adicionar()
     {
         $mensagens = Mensagem::all();
@@ -96,6 +120,9 @@ class MensagemController extends Controller
     {
         $request['escola_id'] = Auth::user()->escola_id;
         $request['user_id'] = Auth::id();
+        if (Auth::user()->professor_id != null) {
+            $request['professor_id'] = Auth::user()->professor_id;
+        }
         Mensagem::create($request->all());
         //  $professores = Professor::all();
         return response()->json(true);

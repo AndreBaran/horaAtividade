@@ -74,6 +74,7 @@ Route::delete('/admin/fullcalendar/atividade-destroy', 'AtividadeController@dest
 Route::put('/admin/mensagem/mensagem-update', 'MensagemController@update')->name('routeMensagemUpdate');
 Route::post('/admin/mensagem/mensagem-add', 'MensagemController@add')->name('routeMensagemAdd');
 Route::delete('/admin/mensagem/mensagem-destroy', 'MensagemController@destroy')->name('routeMensagemDestroy');
+Route::get('/admin/mensagem/mensagem-pendentes', 'MensagemController@loadPendentes')->name('routeMensagemPendentes');
 
 //Route::get('/admin/fullcalendar/professor-load', 'AtividadeController@loadProfessores')->name('routeLoadProfessores');
 

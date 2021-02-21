@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="titleModal">Título do modal</h5>
+                <h5 class="modal-title" id="titleModal">Mensagem</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,6 +12,7 @@
                 <div class="message"></div>
 
                 <form id="formEvent">
+                    @if((Auth::user()->tipo == '1') or (Auth::user()->tipo == '0'))
                     <div class="form-group row">
                         <label for="title" class="col-sm-4 col-form-label">Professor</label>
                         <div class="col-sm-8">
@@ -21,6 +22,7 @@
 
                         </div>
                     </div>
+                    @endif
                     <div class="form-group row">
                         <label for="title" class="col-sm-4 col-form-label">Atividade</label>
                         <div class="col-sm-8">
@@ -48,8 +50,8 @@
                         <textarea class="form-control" id="mensagem_text_msg" name="mensagem_text_msg" rows="3"></textarea>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-4 col-form-label">Modo Atividade</label>
-                        <select name="status_msg" id="status_msg"  class="browser-default">
+                        <label class="col-sm-4 col-form-label">Situação</label>
+                        <select name="status_msg" id="status_msg" class="browser-default" @if(Auth::user()->tipo == '2') disabled @endif >
                             <option value=0>Não Avaliado</option>
                             <option value=1>Aprovada</option>
                             <option value=2>Rejeitada</option>
@@ -60,7 +62,13 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                 <button type="button" class="btn btn-danger deleteEvent_msg">Excluir</button>
+                @if(Auth::user()->tipo == '2')
                 <button type="button" class="btn btn-primary saveEvent_msg">Salvar</button>
+                @endif
+                @if((Auth::user()->tipo == '1') or (Auth::user()->tipo == '0'))
+                <button type="button" class="btn btn-danger refuseEvent_msg">Recusar</button>
+                <button type="button" class="btn btn-success acceptEvent_msg">Aprovar</button>
+                @endif
             </div>
             <div type="hidden" class="form-group row">
                 <div class="col-sm-8">
