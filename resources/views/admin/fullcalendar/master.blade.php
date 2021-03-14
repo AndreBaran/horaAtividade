@@ -33,10 +33,10 @@
       </select>
     </div>
     <div class="box">
-      <button id="botao" type="button"  class="btn btn-sm btn-outline-secondary" justify-content: flex-end>Buscar</button>
-    </div>
-    <div class="box">
-      <button id="mensagem" type="button"  class="btn btn-sm btn-outline-secondary" justify-content: flex-end  onclick="openModal_msg('modalMensagem','')">Mensagem</button>
+      <button id="botao" type="button"  class="btn btn-outline-dark" justify-content: flex-end>Consultar</button>
+      @if((Auth::user()->tipo == '2'))
+      <button id="mensagem" type="button"  class="btn btn-outline-info" justify-content: flex-end  onclick="openModal_msg('modalMensagem','')">Mensagem</button>
+      @endif
     </div>
 
 

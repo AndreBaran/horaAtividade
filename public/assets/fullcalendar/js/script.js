@@ -163,7 +163,7 @@ function sendAtividade(route, data_) {
             console.log(json.responseJSON);
             console.log('***************');
             let responseJSON = json.responseJSON.errors;
-
+            alert(responseJSON);
             $(".message").html(loadErrors(responseJSON));
         }
     });

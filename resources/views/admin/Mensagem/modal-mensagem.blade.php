@@ -36,7 +36,7 @@
                     <div class="form-group row">
                         <label for="start" class="col-sm-4 col-form-label">Data/hora Inicial</label>
                         <div class="col-sm-8">
-                            <input type="text" name="start_msg" class="form-control date-time" id="start_msg">
+                            <input type="text" name="start_msg" class="form-control date-time" id="start_msg" >
                         </div>
                     </div>
                     <div class="form-group row">
@@ -47,11 +47,11 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Mensagem</label>
-                        <textarea class="form-control" id="mensagem_text_msg" name="mensagem_text_msg" rows="3"></textarea>
+                        <textarea class="form-control" id="mensagem_text_msg" name="mensagem_text_msg" rows="3" @if(Auth::user()->tipo <> '2') disabled @endif></textarea>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-4 col-form-label">Situação</label>
-                        <select name="status_msg" id="status_msg" class="browser-default" @if(Auth::user()->tipo == '2') disabled @endif >
+                        <select name="status_msg" id="status_msg" class="browser-default" disabled>
                             <option value=0>Não Avaliado</option>
                             <option value=1>Aprovada</option>
                             <option value=2>Rejeitada</option>

@@ -116,6 +116,7 @@ $(function () {
         console.log('-------------');
 
         sendAtividade_msg(route, Msg);
+        location.reload();
     });
 
     $(".refuseEvent_msg").click(function () {
@@ -185,6 +186,7 @@ $(function () {
         console.log('-------------');
 
         sendAtividade_msg(route, Msg);
+        location.reload();
     });
 
     $(".acceptEvent_msg").click(function () {
@@ -260,6 +262,7 @@ $(function () {
         console.log('-------------');
 
         sendAtividade_msg(route, Event);
+        location.reload();
     });
 
     $(".deleteEvent_msg").click(function () {
@@ -276,6 +279,7 @@ $(function () {
         console.log(route);
         console.log('-------------');
         sendAtividade_msg(route, Atividade);
+        location.reload();
 
     });
    

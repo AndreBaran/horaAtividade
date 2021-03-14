@@ -93,10 +93,13 @@ botao.addEventListener("click",  function () {
         end: end
       }
       console.log(routeAtividades('routeAtividadeUpdate'));
-      sendAtividade(routeAtividades('routeAtividadeUpdate'), newElemente);
+      let teste = sendAtividade(routeAtividades('routeAtividadeUpdate'), newElemente);
+      alert('eventDrop');
+      alert(teste);
       // console.log(end);
     },
     eventClick: function (element) {
+      console.log("{{Auth::user()->tipo }}");
       console.log(element);
       clearMessages('.message');
       resetForm("#formEvent");
@@ -142,7 +145,9 @@ botao.addEventListener("click",  function () {
         end: end
       }
       console.log(routeAtividades('routeAtividadeUpdate'));
-      sendAtividade(routeAtividades('routeAtividadeUpdate'), newElemente);
+      let teste = sendAtividade(routeAtividades('routeAtividadeUpdate'), newElemente);
+      alert('eventResize');
+      alert(teste);
     },
     select: function (element) {
       clearMessages('.message');
@@ -216,6 +221,12 @@ botao.addEventListener("click",  function () {
   //console.log('aaaaaaaaaaaaaaaaaaaaaaa');
 
 });
+
+
+window.onload = function() {
+	// códigos JavaScript a serem executados quando a página carregar
+  $("#botao").click();
+}
 
 // console.log(routeAtividades('routeLoadAtividades'));
 //console.log('aaa');
