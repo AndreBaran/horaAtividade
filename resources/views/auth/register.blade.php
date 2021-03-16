@@ -39,23 +39,18 @@
                             </div>
                         </div>
 
+                      
+
                         <div class="form-group row">
-                            <label for="escola_id" class="col-md-4 col-form-label text-md-right">{{ __('Escola') }}</label>
+                            <label for="escola" class="col-md-4 col-form-label text-md-right">{{ __('Escola') }}</label>
+                            <div class="col-sm-8">
+                                <select class="form-select" style="width:200px;" aria-label="Default select example" id="escola_id" name="escola_id" value="{{ old('escola_id') }}">
 
-                            <div class="col-md-6">
-                                <input id="escola_id" type="text" name="escola_id" value="{{ old('escola_id') }}">
+                                </select>
 
                             </div>
                         </div>
 
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Botão dropdown
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="{{route('admin.escola')}}"></a>
-                            </div>
-                        </div>
 
 
                         <div class="form-group row">
@@ -93,4 +88,8 @@
         </div>
     </div>
 </div>
+<script src="{{asset('assets/fullcalendar/js/script_login.js')}}" async defer></script>
+<div id='geral_dataset' 
+        data-route-load-escola={{route('routeLoadEscola')}} ></div>
+
 @endsection

@@ -25,6 +25,16 @@ class EscolaController extends Controller
       $tipoatividades = Escola::all();
       return view('admin.escola.adicionar',compact('tipoatividades'));
     }
+
+    public function loadEscola()
+    {
+        //$professores = Professor::all();
+        //$professores = Professor::where('user_id', Auth::id())->get();
+        $escolas = Escola::all();
+       
+        //return $professores;//response()->json($professors);
+        return response()->json($escolas);
+    }
  
 
     public function salvar(Request $req)

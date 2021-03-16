@@ -80,6 +80,8 @@ Route::get('/admin/mensagem/mensagem-pendentes', 'MensagemController@loadPendent
 
 Route::get('/admin/professor/professor-load', 'ProfessorController@loadProfessores')->name('routeLoadProfessores');
 
+Route::get('/admin/escola/escola-load', 'EscolaController@loadEscola')->name('routeLoadEscola');
+
 Route::get('/admin/tipoatividade/tipo-load', 'TipoAtividadeController@loadTipos')->name('routeLoadTipos');
 Route::get('/admin/tipoatividade/tipoinfo-load/{id}', 'TipoAtividadeController@loadTipoinfos')->name('routeLoadTipoinfos');
 

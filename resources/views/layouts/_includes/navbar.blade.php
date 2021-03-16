@@ -78,3 +78,4 @@
 <div id='mensagem_dataset_pen' data-route-mensagem-pendentes={{route('routeMensagemPendentes')}}></div>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="{{asset('assets/fullcalendar/js/script_home.js')}}"></script>
+  <script src="{{asset('assets/fullcalendar/js/script_login.js')}}"></script>
