@@ -53,7 +53,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-secondary closeEvent" data-dismiss="modal">Fechar</button>
                 <button type="button" class="btn btn-danger deleteEvent">Excluir</button>
                 <button type="button" class="btn btn-primary saveEvent">Salvar</button>
             </div>

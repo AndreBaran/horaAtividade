@@ -1,6 +1,5 @@
 
-window.onbeforeunload = function()
-{
+window.onbeforeunload = function () {
     document.getElementById("botao").click();
 }
 
@@ -15,7 +14,7 @@ $(function () {
     });
 
     $.getJSON(routeAtividades('routeLoadProfessores'), function (dados) {
-       // console.log(dados);
+        // console.log(dados);
         if (dados.length > 0) {
             var option = '';
             option += '<option value=""></option>';
@@ -74,7 +73,10 @@ $(function () {
         sendAtividade(route, Atividade);
 
     });
-   
+    $(".closeEvent").click(function () {
+        $('#modalCalendar').modal('hide');
+    });
+
 
     $(".saveEvent").click(function () {
         let professor = $("#cmbProfessor option:selected").text();
@@ -83,64 +85,95 @@ $(function () {
         let Atividade = $("#cmbAtividade option:selected").text();
         let idAtividade = $("#cmbAtividade option:selected").val();
 
-        console.log('-------------');
-        let descricao = professor+' '+Atividade;
-       // console.log(teste);
+
+
+        console.log('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu');
         console.log(idProfessor);
-        console.log('-------------');
-
-        let id = $("#modalCalendar input[name='id']").val();
-
-        let title = $("#modalCalendar input[name='title']").val();
-
-        let start = moment($("#modalCalendar input[name='start']").val(), "DD/MM/YYYY HH:mm:ss").format("YYYY-MM-DD HH:mm:ss");
-
-        let end = moment($("#modalCalendar input[name='end']").val(), "DD/MM/YYYY HH:mm:ss").format("YYYY-MM-DD HH:mm:ss");
-        let tipoAtividade =getTipoAtividade(routeAtividades('routeLoadInfotipos'),idAtividade);
-        let color = tipoAtividade.color;//$("#modalCalendar input[name='color']").val();
-
-        let Event = {
-            title: descricao,
-            start: start,
-            end: end,
-            color: color,
-            //extendedProps.event.professor_id=idProfessor,
-            professor_id: idProfessor,
-            tipoatividade_id: idAtividade,
-        };
-
-
-        let testeoooooooooooooo = {
-            title: title,
-            start: start,
-            end: end,
-            colorsss: color,
-            //aaaaprofessor_id =idProfessor,
-            //  atividade_id =idAtividade,
-        };
-
-        let route;
-
-        if (id == '') {
-            route = routeAtividades('routeAtividadeAdd');
-        } else {
-            route = routeAtividades('routeAtividadeUpdate');
-            Event.id = id;
-            Event._method = 'PUT';
+        console.log('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu');
+        if (idProfessor == '') {
+            console.log('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu');
         }
-        console.log('-------------');
+        let erro = '';
+        let contemErro = false;
+        var erros = [];
+        if (idProfessor == '') {
+            erro = 'Professor Não Informado';
+            erros.push(erro);
+            contemErro = true;
+            // break;
+        }
 
-        console.log(testeoooooooooooooo);
-        console.log('-------------');
 
-        sendAtividade(route, Event);
+        if (idAtividade == '') {
+            erro = 'Turma Não Informado';
+            erros.push(erro);
+            contemErro = true;
+        }
+        if (erros.length > 0) {
+            $(".message").html(loadErrors(erros));
+        }
+
+        if (!contemErro) {
+            console.log('-------------XX');
+            let descricao = professor + ' ' + Atividade;
+            // console.log(teste);
+            console.log(idProfessor);
+            console.log('-------------');
+
+            let id = $("#modalCalendar input[name='id']").val();
+
+            let title = $("#modalCalendar input[name='title']").val();
+
+            let start = moment($("#modalCalendar input[name='start']").val(), "DD/MM/YYYY HH:mm:ss").format("YYYY-MM-DD HH:mm:ss");
+
+            let end = moment($("#modalCalendar input[name='end']").val(), "DD/MM/YYYY HH:mm:ss").format("YYYY-MM-DD HH:mm:ss");
+            let tipoAtividade = getTipoAtividade(routeAtividades('routeLoadInfotipos'), idAtividade);
+            let color = tipoAtividade.color;//$("#modalCalendar input[name='color']").val();
+
+            let Event = {
+                title: descricao,
+                start: start,
+                end: end,
+                color: color,
+                //extendedProps.event.professor_id=idProfessor,
+                professor_id: idProfessor,
+                tipoatividade_id: idAtividade,
+            };
+
+            let testeoooooooooooooo = {
+                title: title,
+                start: start,
+                end: end,
+                colorsss: color,
+                //aaaaprofessor_id =idProfessor,
+                //  atividade_id =idAtividade,
+            };
+
+            let route;
+
+            if (id == '') {
+                route = routeAtividades('routeAtividadeAdd');
+            } else {
+                route = routeAtividades('routeAtividadeUpdate');
+                Event.id = id;
+                Event._method = 'PUT';
+            }
+            console.log('-------------');
+
+            console.log(testeoooooooooooooo);
+            console.log('-------------');
+
+            console.log('XXXX-------------XXXX');
+            sendAtividade(route, Event);
+        }
+
     });
 })
 
 //let objCalendar;
 
 function sendAtividade(route, data_) {
- //   console.log('***************');
+    console.log('***************');
     console.log(data_);
     console.log(route);
     $.ajax({
@@ -151,16 +184,27 @@ function sendAtividade(route, data_) {
         success: function (json) {
             console.log(json);
             if (json) {
-                objCalendar.refetchEvents(); 
+                objCalendar.refetchEvents();
+                $('#modalCalendar').modal('hide');
                 //console.log(location);
                 //$('#calendario').load(location.href +  '#calendario');
                 //location.reload();
+            }
+            else {
+                //let responseJSON = "Alteração Irreg";
+                let erro = '';
+                var erros = [];
+                alert('Atividade em Conflito');
+                erro = 'Atividade em Conflito';
+                erros.push(erro);
+                $(".message").html(loadErrors(erros));
+                objCalendar.refetchEvents();
             }
         },
         error: function (json) {
 
             console.log('***************');
-            console.log(json.responseJSON);
+            console.log(json);
             console.log('***************');
             let responseJSON = json.responseJSON.errors;
             alert(responseJSON);
@@ -170,32 +214,32 @@ function sendAtividade(route, data_) {
 }
 
 function getTipoAtividade(route, data_) {
-     var tipoAtividade;
-     $.ajaxSetup({
+    var tipoAtividade;
+    $.ajaxSetup({
         async: false
-      });
-     $.getJSON(route+'/'+data_, function (dados) {
-        tipoAtividade=dados;
+    });
+    $.getJSON(route + '/' + data_, function (dados) {
+        tipoAtividade = dados;
     });
     $.ajaxSetup({
         async: true
-      });
+    });
     return tipoAtividade;
-   }
+}
 
 function getAtividadesWeek(route, data_) {
     var tipoAtividade;
     $.ajaxSetup({
-       async: false
-     });
-    $.getJSON(route+'?'+data_, function (dados) {
-       tipoAtividade=dados;
-   });
-   $.ajaxSetup({
-       async: true
-     });
-   return tipoAtividade;
-  }
+        async: false
+    });
+    $.getJSON(route + '?' + data_, function (dados) {
+        tipoAtividade = dados;
+    });
+    $.ajaxSetup({
+        async: true
+    });
+    return tipoAtividade;
+}
 
 function loadErrors(response) {
 
@@ -229,20 +273,23 @@ function resetForm(form) {
 var btntabela = document.getElementById('btn-divtabela');
 var containerTabela = document.querySelector('.containerTabela');
 var containerCalendario = document.querySelector('.containerCalendario');
-btntabela.addEventListener('click', function() {
-   console.log(containerTabela.style.display); 
-  if(containerTabela.style.display === 'block') {
-    containerTabela.style.display = 'none';
-    containerCalendario.style.display = 'block';
-  } else {
-    containerTabela.style.display = 'block';
-    containerCalendario.style.display = 'none';
-  }
+btntabela.addEventListener('click', function () {
+    console.log('clique');
+    // console.log(containerTabela.style.display); 
+    if (containerTabela.style.display === 'block') {
+        console.log('clique1');
+        containerTabela.style.display = 'none';
+        containerCalendario.style.display = 'block';
+    } else {
+        console.log('clique2');
+        containerTabela.style.display = 'block';
+        containerCalendario.style.display = 'none';
+    }
 });
 
 function printDiv(divID) {
- // console.log(objCalendar);
-    
+    // console.log(objCalendar);
+
 
     //pega o Html da DIV
     var divElements = document.getElementById(divID).innerHTML;
@@ -250,9 +297,9 @@ function printDiv(divID) {
     var oldPage = document.body.innerHTML;
 
     //Alterna o body 
-    document.body.innerHTML = 
-      "<html><head><title></title></head><body>" + 
-      divElements + "</body>";
+    document.body.innerHTML =
+        "<html><head><title></title></head><body>" +
+        divElements + "</body>";
 
     //Imprime o body atual
     window.print();
@@ -264,14 +311,14 @@ function printDiv(divID) {
 
 var btncalendario = document.getElementById('btn-divcalendario');
 
-btncalendario.addEventListener('click', function() {
-  if(containerCalendario.style.display === 'block') {
-    containerCalendario.style.display = 'none';
-    containerTabela.style.display = 'block';
-  } else {
-    containerCalendario.style.display = 'block';
-    containerTabela.style.display = 'none';
-  }
+btncalendario.addEventListener('click', function () {
+    if (containerCalendario.style.display === 'block') {
+        containerCalendario.style.display = 'none';
+        containerTabela.style.display = 'block';
+    } else {
+        containerCalendario.style.display = 'block';
+        containerTabela.style.display = 'none';
+    }
 });
 
 

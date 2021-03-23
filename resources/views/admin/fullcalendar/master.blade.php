@@ -62,10 +62,10 @@
           @include('admin.fullcalendar.totais')
         </div>
 
-        <input type="hidden" name="startView" class="form-control date-time" id="startView">
-        <input type="hidden" name="endView" class="form-control date-time" id="endView">
-        <input type="hidden" name="startLastView" class="form-control date-time" id="startLastView">
-        <input type="hidden" name="endLastView" class="form-control date-time" id="endLastView">
+        <input  name="startView" class="form-control date-time" id="startView">
+        <input name="endView" class="form-control date-time" id="endView">
+        <input  name="startLastView" class="form-control date-time" id="startLastView">
+        <input  name="endLastView" class="form-control date-time" id="endLastView">
       </div>
       <div id='calendario' class='containerCalendario' style="display:block">
         <div id='calendar' 

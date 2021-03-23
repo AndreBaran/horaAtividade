@@ -27,6 +27,8 @@ class AtividadeRequest extends FormRequest
             'title' => 'required|min:3',
             'start' => 'date_format:Y-m-d H:i:s|before:end',
             'end' => 'date_format:Y-m-d H:i:s|after:start',
+            'professor_id' => 'required|min:1',
+            'tipoatividade_id' => 'required|min:1',
         ];
     }
 
@@ -39,6 +41,8 @@ class AtividadeRequest extends FormRequest
             'start.before' => 'A Data/Hora Inicial deve ser menor que a Data Final!',
             'end.date_format' => 'Preencha uma Data Final com valor válido!',
             'end.after' => 'A Data/Hora Final deve ser maior que a Data Inicial!',
+            'professor_id.required' => 'Preencha o campo Professor!',
+            'tipoatividade_id.required' => 'Preencha o campo Turma!',
         ];
     }
 }

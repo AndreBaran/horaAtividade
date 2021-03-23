@@ -22,7 +22,7 @@
         <li class="nav-item">
           <a class="nav-link" href="{{route('admin.escola')}}">Escolas</a>
         </li>
-        
+
         @endif
         @if(!Auth::guest())
         @if(Auth::user()->ativo == '1')
@@ -35,7 +35,7 @@
         @endif
         @endif
         @endif
-        
+
       </ul>
       <ul class="navbar-nav ml-auto">
         <!-- Authentication Links -->
@@ -77,5 +77,4 @@
 
 <div id='mensagem_dataset_pen' data-route-mensagem-pendentes={{route('routeMensagemPendentes')}}></div>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="{{asset('assets/fullcalendar/js/script_home.js')}}"></script>
-  <script src="{{asset('assets/fullcalendar/js/script_login.js')}}"></script>
+<script src="{{asset('assets/fullcalendar/js/script_home.js')}}"></script>

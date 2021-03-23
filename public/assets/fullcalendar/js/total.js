@@ -45,7 +45,8 @@ $(function () {
     console.log('---------------------------------------------------');
     console.log(newElemente);
     let route = routeAtividades('routeAtividadeWeeks', 'start=' + start + '&end=' + end + '&idProfessor=' + idProfessor + '&idTurma=' + idTurma + 'startLast=' + startLast + '&endLast=' + endLast);
-    dados = getAtividadesWeek(route, 'start=' + start + '&end=' + end + '&idProfessor=' + idProfessor + '&idTurma=' + idTurma + 'startLast=' + startLast + '&endLast=' + endLast);
+    console.log('start=' + start + '&end=' + end + '&idProfessor=' + idProfessor + '&idTurma=' + idTurma + '&startLast=' + startLast + '&endLast=' + endLast);
+    dados = getAtividadesWeek(route, 'start=' + start + '&end=' + end + '&idProfessor=' + idProfessor + '&idTurma=' + idTurma + '&startLast=' + startLast + '&endLast=' + endLast);
     console.log(dados);
 
 
@@ -55,13 +56,30 @@ $(function () {
         option += '<tr>';
         option += '<td>' + obj.name + '</td>';
         // option += '<td>' +  (obj.tipo = 0)+ '</td>';
-        option += '<td>' + obj.horaSala + '</td>';
-        option += '<td>' + obj.horaAtividade + '</td>';
-        let qtDireito = obj.horastrabalhadas * (33 / 100);
+        let horaSala = Math.round(obj.horaSala * 100) / 100;
+        option += '<td>' + horaSala + '</td>';
+        let horaAtividade = Math.round(obj.horaAtividade * 100) / 100;
+        option += '<td>' + horaAtividade + '</td>';
+        let qtDireito = Math.round((obj.horastrabalhadas * (33 / 100)) * 100) / 100;
+        console.log(qtDireito * 100) / 100;
         option += '<td>' + qtDireito + '</td>';
         let saldo = qtDireito - obj.horaAtividade;
-        option += '<td color=red>' + saldo + '</td>';
-        option += '<td>' + obj.horastrabalhadas + '</td>';
+        saldo = Math.round(saldo * 100) / 100;
+        // <label for="floatingInputInvalid">Invalid input</label>
+        //<span color:red>Other</span>
+        if (saldo < qtDireito) {
+          option += '<td class="table-danger"> ' + saldo + ' </td>';
+        }
+        else {
+          if (saldo < qtDireito) {
+            option += '<td class="table-warning"> ' + saldo + ' </td>';
+          }
+          else {
+            option += '<td class="table-success"> ' + saldo + ' </td>';
+          }
+        }
+
+        option += '<td>' + Math.round(obj.horastrabalhadas * 100) / 100 + '</td>';
         option += '</tr>';
 
 

@@ -111,7 +111,7 @@ class AtividadeController extends Controller
         //     ->selectRaw('(sum(TIMESTAMPDIFF(minute,start,end))/60) as horas')
         // ->get();
 
-        $atividade = Atividade::from('atividades as at')
+        $atividadess = Atividade::from('atividades as at')
             ->whereBetween('at.start', [$start, $end])
             ->where('at.escola_id', Auth::user()->escola_id)
             ->where(function ($query) use ($idProfessor, $idTurma) {
@@ -139,7 +139,7 @@ class AtividadeController extends Controller
         $atividade = Atividade::from('atividades as at')
             ->whereBetween('at.start', [$start, $end])
             ->where('at.escola_id', Auth::user()->escola_id)
-            ->groupBy('professors.name','horastrabalhadas')
+            ->groupBy('professors.name', 'horastrabalhadas')
             ->leftJoin('professors', 'at.professor_id', '=', 'professors.id')
             ->leftJoin('tipo_atividades', 'at.tipoatividade_id', '=', 'tipo_atividades.id')
             ->select('professors.name')
@@ -149,7 +149,7 @@ class AtividadeController extends Controller
                 'horastrabalhadas' => Atividade::from('atividades as atAux')
                     ->whereBetween('atAux.start', [$startLast, $endLast])
                     ->where('atAux.escola_id', Auth::user()->escola_id)
-                    ->whereRaw ('atAux.professor_id=at.professor_id')
+                    ->whereRaw('atAux.professor_id=at.professor_id')
                     ->selectRaw('sum(TIMESTAMPDIFF(minute,atAux.start,atAux.end))/60 as horastrabalhadas')
             ])
 
@@ -200,6 +200,8 @@ class AtividadeController extends Controller
         //
     }
 
+
+
     /**
      * Update the specified resource in storage.
      *
@@ -209,25 +211,81 @@ class AtividadeController extends Controller
      */
     //public function update(Request $request, Atividade $atividade)
 
+
+
     public function add(AtividadeRequest $request)
     {
-        $request['escola_id'] = Auth::user()->escola_id;
-        
-        Atividade::create($request->all());
+
         //  $professores = Professor::all();
-        return response()->json(true);
+        $request['escola_id'] = Auth::user()->escola_id;
+
+        $hasAtividade =  Atividade::from('atividades as at')
+            ->where('at.escola_id', Auth::user()->escola_id)
+            ->where('at.professor_id', $request->professor_id)
+
+            ->where(function ($query) use ($request) {
+                $query->where([
+                    ['at.start', '<', $request->start],
+                    ['at.end', '>', $request->start],
+                ])
+                    ->orwhere([
+                        ['at.start', '<', $request->end],
+                        ['at.end', '>', $request->end],
+                    ]);
+            })
+            ->select('at.professor_id')->get();
+
+
+        if (($hasAtividade != null) && ($hasAtividade->count() > 0)) {
+            return response()->json(false);
+        } else {
+            $request['escola_id'] = Auth::user()->escola_id;
+
+            Atividade::create($request->all());
+            return response()->json(true);
+        };
     }
 
-    public function update(AtividadeRequest $request)
+
+
+    public function update(Request $request)
     {
         $atividade = Atividade::where('id', $request->id)->first();
 
+        if ($request->professor_id != null) {
+            $profTemp=$request->professor_id;
+        }
+        else{
+            $profTemp=$atividade->professor_id;
+        }
+       
+        $hasAtividade =  Atividade::from('atividades as at')
+            ->where('at.escola_id', Auth::user()->escola_id)
+            ->where('at.professor_id', $profTemp)
+            ->where('at.id','<>', $request->id)
 
-        $atividade->fill($request->all());
-        $request['escola_id'] = Auth::user()->escola_id;
-        $atividade->save();
+            ->where(function ($query) use ($request) {
+                $query->where([
+                    ['at.start', '<', $request->start],
+                    ['at.end', '>', $request->start],
+                ])
+                    ->orwhere([
+                        ['at.start', '<', $request->end],
+                        ['at.end', '>', $request->end],
+                    ]);
+            })
+            ->select('at.professor_id')->get();
+        // return response()->json($hasAtividade);
 
-        return response()->json(true);
+        if (($hasAtividade != null) && ($hasAtividade->count() > 0)) {
+            return response()->json(false);
+        } else {
+            $atividade->fill($request->all());
+            $request['escola_id'] = Auth::user()->escola_id;
+            $atividade->save();
+
+            return response()->json(true);
+        }
     }
 
     /**

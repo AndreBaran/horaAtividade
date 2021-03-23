@@ -137,6 +137,8 @@ botao.addEventListener("click",  function () {
       let start = moment(element.event.start).format("YYYY-MM-DD HH:mm:ss");
       let end = moment(element.event.end).format("YYYY-MM-DD HH:mm:ss");
 
+      console.log(element);
+
       let newElemente = {
         _method: 'PUT',
         id: element.event.id,
@@ -145,6 +147,7 @@ botao.addEventListener("click",  function () {
         end: end
       }
       console.log(routeAtividades('routeAtividadeUpdate'));
+      console.log(routeAtividades(newElemente));
       let teste = sendAtividade(routeAtividades('routeAtividadeUpdate'), newElemente);
       alert('eventResize');
       alert(teste);

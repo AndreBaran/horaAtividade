@@ -379,8 +379,6 @@ function resetForm_msg(form) {
     $(form)[0].reset();
 }
 
-var btntabela = document.getElementById('btn-divtabela');
-var containerTabela = document.querySelector('.containerTabela');
 
 
 function openModal_msg(divID,reg) {
